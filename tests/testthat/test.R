@@ -63,3 +63,14 @@ test_that("UTF8", {
   expect_equal(res, cbind(.match = "Gábor"))
 
 })
+
+
+test_that("text is scalar & capture groups", {
+
+  res <- re_match("(\\w+) (\\w+)", "foo bar")
+  expect_equal(res, cbind(.match = "foo bar", "foo", "bar"))
+
+  res <- re_match("(?<g1>\\w+) (?<g2>\\w+)", "foo bar")
+  expect_equal(res, cbind(.match = "foo bar", g1 = "foo", g2 = "bar"))
+
+})

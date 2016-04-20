@@ -60,7 +60,7 @@ re_match <- function(pattern, text, perl = TRUE, ...) {
 
     res <- cbind(
       res,
-      vapply(
+      rbind(vapply(
         seq_len(NCOL(attr(match, "capture.start"))),
         function(i) {
           start <- attr(match, "capture.start")[,i]
@@ -71,7 +71,7 @@ re_match <- function(pattern, text, perl = TRUE, ...) {
           res
         },
         character(length(match))
-      )
+      ))
     )
   }
 
