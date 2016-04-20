@@ -33,9 +33,9 @@ test_that("not so corner cases", {
 
   dates <- c("2016-04-20", "1977-08-08", "not a date", "2016",
              "76-03-02", "2012-06-30", "2015-01-21 19:58")
-  ansidate <- "([0-9]{4})-([0-1][0-9])-([0-3][0-9])"
+  isodate <- "([0-9]{4})-([0-1][0-9])-([0-3][0-9])"
   expect_equal(
-    re_match(text = dates, pattern = ansidate),
+    re_match(text = dates, pattern = isodate),
     cbind(
       .match = c(dates[1:2], NA, NA, NA, "2012-06-30", "2015-01-21"),
       c("2016", "1977", NA, NA, NA, "2012", "2015"),
@@ -44,9 +44,9 @@ test_that("not so corner cases", {
     )
   )
 
-  ansidaten <- "(?<year>[0-9]{4})-(?<month>[0-1][0-9])-(?<day>[0-3][0-9])"
+  isodaten <- "(?<year>[0-9]{4})-(?<month>[0-1][0-9])-(?<day>[0-3][0-9])"
   expect_equal(
-    re_match(text = dates, pattern = ansidaten),
+    re_match(text = dates, pattern = isodaten),
     cbind(
       .match = c(dates[1:2], NA, NA, NA, "2012-06-30", "2015-01-21"),
       year = c("2016", "1977", NA, NA, NA, "2012", "2015"),
