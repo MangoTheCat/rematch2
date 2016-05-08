@@ -1,4 +1,9 @@
 
+# 2.0.0
+
+* Add `re_match_all` to extract all matches.
+
+
 # 1.0.1
 
 * Make `R CMD check` work when `testthat` is not available.

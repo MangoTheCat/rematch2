@@ -78,3 +78,67 @@ re_match <- function(pattern, text, perl = TRUE, ...) {
   colnames(res) <- c(".match", attr(match, "capture.names"))
   res
 }
+
+#' Extract all matches of a regular expression
+#'
+#' This function is a thin wrapper on the \code{\link[base]{gregexpr}}
+#' base R function, to provide an API that is easier to use. It is
+#' similar to \code{\link{re_match}}, but extracts all matches, including
+#' potentially named capture groups.
+#'
+#' @param ... Additional arguments to pass to
+#'   \code{\link[base]{regexpr}}.
+#' @inheritParams re_match
+#' @return A list of character matrices. Each list element contains the
+#'   matches of one string in the input character vector. Each matrix
+#'   has a \code{.match} column that contains the matching part of the
+#'   string. Additional columns are added for capture groups. For named
+#'   capture groups, the columns are named.
+#'
+#' @export
+
+re_match_all <- function(pattern, text, perl = TRUE, ...) {
+
+  stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
+  text <- as.character(text)
+
+  match <- gregexpr(pattern, text, perl = perl, ...)
+
+  mapply(re_match_all1, match, text, SIMPLIFY = FALSE)
+}
+
+re_match_all1 <- function(match, text) {
+
+  match_len <- attr(match, "match.length")
+  capt_start <- attr(match, "capture.start")
+  capt_len <- attr(match, "capture.length")
+  capt_names <- attr(match, "capture.names")
+  match <- as.vector(match)
+
+  if (identical(match, -1L)) {
+    return(matrix(
+      nrow = 0,
+      ncol = length(capt_names) + 1,
+      dimnames = list(character(), c(".match", capt_names))
+    ))
+  }
+
+  res <- cbind(as.character(substring(text, match, match + match_len - 1)))
+
+  if (!is.null(capt_start)) {
+    res <- cbind(
+      res,
+      rbind(vapply(
+        seq_len(NCOL(capt_start)),
+        function(i) {
+          substring(text, capt_start[,i], capt_start[,i] + capt_len[,i] - 1)
+        },
+        character(length(match))
+      ))
+    )
+  }
+
+  colnames(res) <- c(".match", capt_names)
+
+  res
+}
