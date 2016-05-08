@@ -115,6 +115,7 @@ re_match_all1 <- function(match, text) {
 
   if (identical(match, -1L)) {
     return(matrix(
+      character(),
       nrow = 0,
       ncol = length(capt_names) + 1,
       dimnames = list(character(), c(".match", capt_names))
