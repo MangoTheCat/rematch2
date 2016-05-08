@@ -4,7 +4,7 @@
 \alias{re_match_all}
 \title{Extract all matches of a regular expression}
 \usage{
-re_match_all(pattern, text, perl = TRUE, ...)
+re_match_all(pattern, text, ...)
 }
 \arguments{
 \item{pattern}{Regular expression, defaults to be a PCRE
@@ -12,9 +12,6 @@ expression. See \code{\link[base]{regex}} for more about
 regular expressions.}
 
 \item{text}{Character vector.}
-
-\item{perl}{Logical, should Perl-compatible regular expessions
-be used?}
 
 \item{...}{Additional arguments to pass to
 \code{\link[base]{regexpr}}.}

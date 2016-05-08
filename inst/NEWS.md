@@ -3,6 +3,8 @@
 
 * Add `re_match_all` to extract all matches.
 
+* Removed the `perl` options, we always use PERL compatible regular
+  expressions.
 
 # 1.0.1
 

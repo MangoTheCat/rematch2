@@ -20,8 +20,6 @@ NULL
 #'   expression. See \code{\link[base]{regex}} for more about
 #'   regular expressions.
 #' @param text Character vector.
-#' @param perl Logical, should Perl-compatible regular expessions
-#'   be used?
 #' @param ... Additional arguments to pass to
 #'   \code{\link[base]{regexpr}}.
 #' @return A character matrix of the matched (sub)strings.
@@ -40,12 +38,12 @@ NULL
 #' isodaten <- "(?<year>[0-9]{4})-(?<month>[0-1][0-9])-(?<day>[0-3][0-9])"
 #' re_match(text = dates, pattern = isodaten)
 
-re_match <- function(pattern, text, perl = TRUE, ...) {
+re_match <- function(pattern, text, ...) {
 
   stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
   text <- as.character(text)
 
-  match <- regexpr(pattern, text, perl = perl, ...)
+  match <- regexpr(pattern, text, perl = TRUE, ...)
 
   ## Full matches
   res <- cbind(as.character(
@@ -97,12 +95,12 @@ re_match <- function(pattern, text, perl = TRUE, ...) {
 #'
 #' @export
 
-re_match_all <- function(pattern, text, perl = TRUE, ...) {
+re_match_all <- function(pattern, text, ...) {
 
   stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
   text <- as.character(text)
 
-  match <- gregexpr(pattern, text, perl = perl, ...)
+  match <- gregexpr(pattern, text, perl = TRUE, ...)
 
   mapply(re_match_all1, match, text, SIMPLIFY = FALSE)
 }
