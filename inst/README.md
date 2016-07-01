@@ -70,24 +70,22 @@ github_repos <- c("metacran/crandb", "jeroenooms/curl@v0.9.3",
                   "jimhester/covr#47", "hadley/dplyr@*release",
                   "mangothecat/remotes@550a3c7d3f9e1493a2ba",
                   "/$&@R64&3")
-owner_rx <- "(?:([^/]+)/)?"
-repo_rx <- "([^/@#]+)"
-subdir_rx <- "(?:/([^@#]*[^@#/]))?"
-ref_rx <- "(?:@([^*].*))"
-pull_rx <- "(?:#([0-9]+))"
-release_rx <- "(?:@([*]release))"
+owner_rx <- "(?:(?<owner>[^/]+)/)?"
+repo_rx <- "(?<repo>[^/@#]+)"
+subdir_rx <- "(?:/(?<subdir>[^@#]*[^@#/]))?"
+ref_rx <- "(?:@(?<ref>[^*].*))"
+pull_rx <- "(?:#(?<pull>[0-9]+))"
+release_rx <- "(?:@(?<release>[*]release))"
 ref_or_pull_or_release_rx <-
   sprintf("(?:%s|%s|%s)?", ref_rx, pull_rx, release_rx)
-github_rx <- sprintf("^(?:%s%s%s%s|(.*))$",
+github_rx <- sprintf("^(?:%s%s%s%s|(?<catchall>.*))$",
                      owner_rx, repo_rx, subdir_rx, ref_or_pull_or_release_rx)
 out <- re_match(text = github_repos, pattern = github_rx)
-colnames(out) <-
-  c(".input", "owner", "repo", "subdir", "ref", "pull", "release", "catchall")
 out
 ```
 
 ```
-#>      .input                                     owner         repo     
+#>      .match                                     owner         repo     
 #> [1,] "metacran/crandb"                          "metacran"    "crandb" 
 #> [2,] "jeroenooms/curl@v0.9.3"                   "jeroenooms"  "curl"   
 #> [3,] "jimhester/covr#47"                        "jimhester"   "covr"   
