@@ -3,28 +3,28 @@ context("rematch2")
 
 test_that("corner cases", {
 
-  res <- re_match("", c("foo", "bar"))
+  res <- re_match(c("foo", "bar"), "")
   expect_equal(res, cbind(.match = c("", "")))
 
-  res <- re_match("", c("foo", "", "bar"))
+  res <- re_match(c("foo", "", "bar"), "")
   expect_equal(res, cbind(.match = c("", "", "")))
 
-  res <- re_match("", character())
+  res <- re_match(character(), "")
   expect_equal(res, cbind(.match = character()))
 
-  res <- re_match("foo", character())
+  res <- re_match(character(), "foo")
   expect_equal(res, cbind(.match = character()))
 
-  res <- re_match("foo (g1) (g2)", character())
+  res <- re_match(character(), "foo (g1) (g2)")
   expect_equal(res, cbind(.match = character(), character(), character()))
 
-  res <- re_match("foo (g1) (?<name>g2)", character())
+  res <- re_match(character(), "foo (g1) (?<name>g2)")
   expect_equal(
     res,
     cbind(.match = character(), character(), name = character())
   )
 
-  res <- re_match("foo", "not")
+  res <- re_match("not", "foo")
   expect_equal(res, cbind(.match = NA_character_))
 })
 
@@ -59,7 +59,7 @@ test_that("not so corner cases", {
 
 test_that("UTF8", {
 
-  res <- re_match("Gábor", c("Gábor Csárdi"))
+  res <- re_match("Gábor Csárdi", "Gábor")
   expect_equal(res, cbind(.match = "Gábor"))
 
 })
@@ -67,10 +67,10 @@ test_that("UTF8", {
 
 test_that("text is scalar & capture groups", {
 
-  res <- re_match("(\\w+) (\\w+)", "foo bar")
+  res <- re_match("foo bar", "(\\w+) (\\w+)")
   expect_equal(res, cbind(.match = "foo bar", "foo", "bar"))
 
-  res <- re_match("(?<g1>\\w+) (?<g2>\\w+)", "foo bar")
+  res <- re_match("foo bar", "(?<g1>\\w+) (?<g2>\\w+)")
   expect_equal(res, cbind(.match = "foo bar", g1 = "foo", g2 = "bar"))
 
 })
