@@ -4,14 +4,14 @@
 \alias{re_match}
 \title{Match a regular expression to a character vector}
 \usage{
-re_match(pattern, text, ...)
+re_match(text, pattern, ...)
 }
 \arguments{
+\item{text}{Character vector.}
+
 \item{pattern}{Regular expression, defaults to be a PCRE
 expression. See \code{\link[base]{regex}} for more about
 regular expressions.}
-
-\item{text}{Character vector.}
 
 \item{...}{Additional arguments to pass to
 \code{\link[base]{regexpr}}.}

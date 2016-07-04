@@ -38,7 +38,7 @@ NULL
 #' isodaten <- "(?<year>[0-9]{4})-(?<month>[0-1][0-9])-(?<day>[0-3][0-9])"
 #' re_match(text = dates, pattern = isodaten)
 
-re_match <- function(pattern, text, ...) {
+re_match <- function(text, pattern, ...) {
 
   stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
   text <- as.character(text)
@@ -95,7 +95,7 @@ re_match <- function(pattern, text, ...) {
 #'
 #' @export
 
-re_match_all <- function(pattern, text, ...) {
+re_match_all <- function(text, pattern, ...) {
 
   stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
   text <- as.character(text)
