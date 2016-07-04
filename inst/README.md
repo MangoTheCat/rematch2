@@ -1,15 +1,15 @@
 
 
 
-# rematch
+# rematch2
 
 > Match Regular Expressions with a Nicer 'API'
 
-[![Linux Build Status](https://travis-ci.org/MangoTheCat/rematch.svg?branch=master)](https://travis-ci.org/MangoTheCat/rematch)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/MangoTheCat/rematch?svg=true)](https://ci.appveyor.com/project/gaborcsardi/rematch)
-[![](http://www.r-pkg.org/badges/version/rematch)](http://www.r-pkg.org/pkg/rematch)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/rematch)](http://www.r-pkg.org/pkg/rematch)
-[![Coverage Status](https://img.shields.io/codecov/c/github/MangoTheCat/rematch/master.svg)](https://codecov.io/github/MangoTheCat/rematch?branch=master)
+[![Linux Build Status](https://travis-ci.org/MangoTheCat/rematch2.svg?branch=master)](https://travis-ci.org/MangoTheCat/rematch2)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/MangoTheCat/rematch2?svg=true)](https://ci.appveyor.com/project/gaborcsardi/rematch2)
+[![](http://www.r-pkg.org/badges/version/rematch2)](http://www.r-pkg.org/pkg/rematch2)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/rematch2)](http://www.r-pkg.org/pkg/rematch2)
+[![Coverage Status](https://img.shields.io/codecov/c/github/MangoTheCat/rematch2/master.svg)](https://codecov.io/github/MangoTheCat/rematch2?branch=master)
 
 A small wrapper on 'regexpr' to extract the matches and captured groups
 from the match of a regular expression to a character vector.
@@ -18,14 +18,14 @@ from the match of a regular expression to a character vector.
 
 
 ```r
-source("https://install-github.me/MangoTheCat/rematch")
+source("https://install-github.me/MangoTheCat/rematch2")
 ```
 
 ## Usage
 
 
 ```r
-library(rematch)
+library(rematch2)
 ```
 
 

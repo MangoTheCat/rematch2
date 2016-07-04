@@ -6,7 +6,7 @@
 #' See \code{\link{re_match}}.
 #'
 #' @docType package
-#' @name rematch
+#' @name rematch2
 NULL
 
 #' Match a regular expression to a character vector

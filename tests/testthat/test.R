@@ -1,5 +1,5 @@
 
-context("rematch")
+context("rematch2")
 
 test_that("corner cases", {
 

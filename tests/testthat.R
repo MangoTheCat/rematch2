@@ -1,5 +1,5 @@
 
 if (require(testthat)) {
-  library(rematch)
-  test_check("rematch")
+  library(rematch2)
+  test_check("rematch2")
 }
