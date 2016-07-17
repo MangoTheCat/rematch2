@@ -102,10 +102,10 @@ re_match_all <- function(text, pattern, ...) {
 
   match <- gregexpr(pattern, text, perl = TRUE, ...)
 
-  mapply(re_match_all1, match, text, SIMPLIFY = FALSE)
+  mapply(re_match_all1, text, match, SIMPLIFY = FALSE)
 }
 
-re_match_all1 <- function(match, text) {
+re_match_all1 <- function(text, match) {
 
   match_len <- attr(match, "match.length")
   capt_start <- attr(match, "capture.start")
