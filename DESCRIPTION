@@ -1,11 +1,10 @@
 Package: rematch2
-Title: Match Regular Expressions with a Nicer 'API'
+Title: Tidy Output from Regular Expression Matching
 Version: 2.0.0
-Author: Gabor Csardi
-Maintainer: Gabor Csardi <gcsardi@mango-solutions.com>
-Description: A small wrapper on 'regexpr' to extract the matches and
-    captured groups from the match of a regular expression to a character
-    vector.
+Author: Gábor Csárdi
+Maintainer: Gábor Csárdi <gcsardi@mango-solutions.com>
+Description: Wrappers on 'regexpr' and 'gregexpr' to return the match
+    results in tidy data frames.
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/MangoTheCat/rematch2
