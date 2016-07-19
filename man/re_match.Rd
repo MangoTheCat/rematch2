@@ -16,12 +16,6 @@ regular expressions.}
 \item{...}{Additional arguments to pass to
 \code{\link[base]{regexpr}}.}
 }
-\value{
-A character matrix of the matched (sub)strings.
-  The first column is always the full match. This column is
-  named \code{.match}. The result of the columns are capture groups,
-  with appropriate column names, if the groups are named.
-}
 \description{
 This function is a small wrapper on the \code{\link[base]{regexpr}}
 base R function, to provide an API that is easier to use.
