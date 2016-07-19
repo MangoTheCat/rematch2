@@ -2,24 +2,49 @@
 % Please edit documentation in R/all.R
 \name{re_match_all}
 \alias{re_match_all}
-\title{Extract all matches of a regular expression}
+\title{Extract all matches of a PCRE regular expression, as a data frame}
 \usage{
 re_match_all(text, pattern, ...)
 }
 \arguments{
 \item{text}{Character vector.}
 
-\item{pattern}{Regular expression, defaults to be a PCRE
-expression. See \code{\link[base]{regex}} for more about
-regular expressions.}
+\item{pattern}{A PCRE regular expression. See \code{\link[base]{regex}}
+for more about regular expressions.}
 
 \item{...}{Additional arguments to pass to
-\code{\link[base]{regexpr}}.}
+\code{\link[base]{gregexpr}} (or \code{\link[base]{regexpr}} if
+\code{text} is of length zero).}
+}
+\value{
+A data frame with all matching (sub)strings and capture groups
+  for all matches in all input strings. The rows of the data frame
+  correspond to the input strings in \code{text}. The columns correspond
+  to the capture groups plus the last column called \code{.match}
+  corresponds to the complete matches. Since all matches are returned
+  all columns are list columns containing character vectors.
+  The columns of named groups are named as well.
 }
 \description{
 This function is a thin wrapper on the \code{\link[base]{gregexpr}}
-base R function, to provide an API that is easier to use. It is
-similar to \code{\link{re_match}}, but extracts all matches, including
-potentially named capture groups.
+base R function, to extract the matching (sub)strings as a data frame.
+It extracts all matches, and potentially their capture groups as well.
+}
+\details{
+Note: if the input text character vector has length zero,
+\code{\link[base]{regexpr}} is called instead of
+\code{\link[base]{gregexpr}}, because the latter cannot extract the
+number and names of the capture groups in this case.
+}
+\examples{
+name_rex <- paste0(
+  "(?<first>[[:upper:]][[:lower:]]+) ",
+  "(?<last>[[:upper:]][[:lower:]]+)"
+)
+notables <- c(
+  "  Ben Franklin and Jefferson Davis",
+  "\\tMillard Fillmore"
+)
+re_match_all(notables, name_rex)
 }
 

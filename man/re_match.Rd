@@ -2,26 +2,36 @@
 % Please edit documentation in R/package.R
 \name{re_match}
 \alias{re_match}
-\title{Match a regular expression to a character vector}
+\title{Match a regular expression to a character vector, return a data frame}
 \usage{
 re_match(text, pattern, ...)
 }
 \arguments{
 \item{text}{Character vector.}
 
-\item{pattern}{Regular expression, defaults to be a PCRE
-expression. See \code{\link[base]{regex}} for more about
-regular expressions.}
+\item{pattern}{A PCRE regular expression. See \code{\link[base]{regex}}
+for more about regular expressions.}
 
 \item{...}{Additional arguments to pass to
 \code{\link[base]{regexpr}}.}
 }
+\value{
+A data frame of character vectors: one column per capture
+  group, named if the group was named, and an additional column for
+  the first matching (sub)string. Each row corresponds to an element
+  in the \code{text} vector.
+}
 \description{
-This function is a small wrapper on the \code{\link[base]{regexpr}}
-base R function, to provide an API that is easier to use.
+\code{re_match} wraps \code{\link[base]{regexpr}} and returns the
+match results in a convenient data frame. The data frame has one
+column for each capture group, and one final columns called \code{.match}
+for the matching (sub)string. The columns of the capture groups are
+named if the groups themselves are named.
 }
 \details{
-Currently only the first occurence of the pattern is used.
+Note that \code{re_match} always matches PCRE compatible regular
+epxressions, i.e. \code{perl = TRUE} is set for
+\code{\link[base]{regexpr}}.
 }
 \examples{
 dates <- c("2016-04-20", "1977-08-08", "not a date", "2016",
@@ -32,5 +42,9 @@ re_match(text = dates, pattern = isodate)
 # The same with named groups
 isodaten <- "(?<year>[0-9]{4})-(?<month>[0-1][0-9])-(?<day>[0-3][0-9])"
 re_match(text = dates, pattern = isodaten)
+}
+\seealso{
+\code{\link{re_match_all}} for extracting all matches for a
+  string.
 }
 
