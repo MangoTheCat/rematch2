@@ -25,7 +25,7 @@ re_match_all <- function(text, pattern, ...) {
     return(
       structure(
         replicate(num_groups + 1, list(), simplify = FALSE),
-        names = c(".match", attr(match, "capture.names")),
+        names = c(attr(match, "capture.names"), ".match"),
         row.names = integer(0),
         class = "data.frame"
       )
@@ -53,7 +53,7 @@ re_match_all <- function(text, pattern, ...) {
 
   structure(
     res,
-    names = c(".match", attr(match[[1]], "capture.names")),
+    names = c(attr(match[[1]], "capture.names"), ".match"),
     row.names = seq_along(text),
     class = "data.frame"
   )
@@ -80,8 +80,8 @@ match1 <- function(text1, match1) {
     groupstr <- substring(text1, gstart, gend)
     dim(groupstr) <- dim(gstart)
 
-    c(list(.match = matchstr),
-      lapply(seq_len(ncol(groupstr)), function(i) groupstr[, i])
+    c(lapply(seq_len(ncol(groupstr)), function(i) groupstr[, i]),
+      list(.match = matchstr)
       )
   }
 }

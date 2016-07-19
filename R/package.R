@@ -63,9 +63,9 @@ re_match <- function(text, pattern, ...) {
     groupstr[ gstart == -1 ] <- NA_character_
     dim(groupstr) <- dim(gstart)
 
-    res <- cbind(res, groupstr, stringsAsFactors = FALSE)
+    res <- cbind(groupstr, res, stringsAsFactors = FALSE)
   }
 
-  names(res) <- c(".match", attr(match, "capture.names"))
+  names(res) <- c(attr(match, "capture.names"), ".match")
   res
 }

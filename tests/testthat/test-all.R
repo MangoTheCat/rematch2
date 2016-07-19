@@ -28,8 +28,8 @@ test_that("capture groups", {
   expect_equal(
     res,
     df(
-      .match = list(c("123", "456"), character(), character(), "1", "123"),
-      list(c("123", "456"), character(), character(), "1", "123")
+      list(c("123", "456"), character(), character(), "1", "123"),
+      .match = list(c("123", "456"), character(), character(), "1", "123")
     )
   )
 
@@ -41,12 +41,12 @@ test_that("scalar text with capure groups", {
   res <- re_match_all("foo bar", "\\b(\\w+)\\b")
   expect_equal(
     res,
-    df(.match = list(c("foo", "bar")), list(c("foo", "bar")))
+    df(list(c("foo", "bar")), .match = list(c("foo", "bar")))
   )
 
   res <- re_match_all("foo bar", "\\b(?<word>\\w+)\\b")
   expect_equal(
     res,
-    df(.match = list(c("foo", "bar")), word = list(c("foo", "bar")))
+    df(word = list(c("foo", "bar")), .match = list(c("foo", "bar")))
   )
 })
