@@ -29,7 +29,15 @@
 #' @family tidy regular expression matching
 #' @export
 #' @examples
-#' TODO
+#' #' name_rex <- paste0(
+#'   "(?<first>[[:upper:]][[:lower:]]+) ",
+#'   "(?<last>[[:upper:]][[:lower:]]+)"
+#' )
+#' notables <- c(
+#'   "  Ben Franklin and Jefferson Davis",
+#'   "\tMillard Fillmore"
+#' )
+#' re_exec(notables, name_rex)
 
 re_exec_all <- function(text, pattern, ...) {
 

@@ -39,7 +39,15 @@ Non-matching strings contain NAs in their corresponding rows, for the
 matches and the positions as well.
 }
 \examples{
-TODO
+name_rex <- paste0(
+  "(?<first>[[:upper:]][[:lower:]]+) ",
+  "(?<last>[[:upper:]][[:lower:]]+)"
+)
+notables <- c(
+  "  Ben Franklin and Jefferson Davis",
+  "\\tMillard Fillmore"
+)
+re_exec(notables, name_rex)
 }
 \seealso{
 Other tidy.regular.expression.matching: \code{\link{re_exec_all}},
