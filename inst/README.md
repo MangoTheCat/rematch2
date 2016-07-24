@@ -22,7 +22,7 @@ and `gregexpr` to return the results in tidy data frames.
     - [First match](#first-match)
     - [All matches](#all-matches)
     - [Match positions](#match-positions)
-- [License](#license)
+  - [License](#license)
 
 ## Installation
 
