@@ -145,7 +145,8 @@ notables <- c(
   "  Ben Franklin and Jefferson Davis",
   "\tMillard Fillmore"
 )
-re_match_all(notables, name_rex)
+not <- re_match_all(notables, name_rex)
+not
 ```
 
 ```
@@ -154,6 +155,43 @@ re_match_all(notables, name_rex)
 #> *    <list>    <list>    <list>
 #> 1 <chr [2]> <chr [2]> <chr [2]>
 #> 2 <chr [1]> <chr [1]> <chr [1]>
+```
+
+
+```r
+not$first
+```
+
+```
+#> [[1]]
+#> [1] "Ben"       "Jefferson"
+#> 
+#> [[2]]
+#> [1] "Millard"
+```
+
+```r
+not$last
+```
+
+```
+#> [[1]]
+#> [1] "Franklin" "Davis"   
+#> 
+#> [[2]]
+#> [1] "Fillmore"
+```
+
+```r
+not$.match
+```
+
+```
+#> [[1]]
+#> [1] "Ben Franklin"    "Jefferson Davis"
+#> 
+#> [[2]]
+#> [1] "Millard Fillmore"
 ```
 
 ### Match positions
@@ -166,7 +204,8 @@ has three components: `match`, `start`, `end`.
 
 
 ```r
-re_exec(notables, name_rex)
+pos <- re_exec(notables, name_rex)
+pos
 ```
 
 ```
@@ -179,7 +218,41 @@ re_exec(notables, name_rex)
 
 
 ```r
-re_exec_all(notables, name_rex)
+pos[[1]]
+```
+
+```
+#> [[1]]
+#> [[1]]$match
+#> [1] "Ben"
+#> 
+#> [[1]]$start
+#> first 
+#>     3 
+#> 
+#> [[1]]$end
+#> first 
+#>     5 
+#> 
+#> 
+#> [[2]]
+#> [[2]]$match
+#> [1] "Millard"
+#> 
+#> [[2]]$start
+#> first 
+#>     2 
+#> 
+#> [[2]]$end
+#> first 
+#>     8
+```
+
+
+
+```r
+allpos <- re_exec_all(notables, name_rex)
+allpos
 ```
 
 ```
@@ -188,6 +261,36 @@ re_exec_all(notables, name_rex)
 #> *     <list>     <list>     <list>
 #> 1 <list [3]> <list [3]> <list [3]>
 #> 2 <list [3]> <list [3]> <list [3]>
+```
+
+
+```r
+allpos[[1]]
+```
+
+```
+#> [[1]]
+#> [[1]]$match
+#> [1] "Ben"       "Jefferson"
+#> 
+#> [[1]]$start
+#> [1]  3 20
+#> 
+#> [[1]]$end
+#> [1]  5 28
+#> 
+#> 
+#> [[2]]
+#> [[2]]$match
+#> [1] "Millard"
+#> 
+#> [[2]]$start
+#> first 
+#>     2 
+#> 
+#> [[2]]$end
+#> first 
+#>     8
 ```
 
 ## License

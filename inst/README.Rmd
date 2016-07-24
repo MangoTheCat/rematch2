@@ -107,7 +107,14 @@ notables <- c(
   "  Ben Franklin and Jefferson Davis",
   "\tMillard Fillmore"
 )
-re_match_all(notables, name_rex)
+not <- re_match_all(notables, name_rex)
+not
+```
+
+```{r}
+not$first
+not$last
+not$.match
 ```
 
 ### Match positions
@@ -119,11 +126,22 @@ records. `re_exec` returns one match record per data frame cell,
 has three components: `match`, `start`, `end`.
 
 ```{r}
-re_exec(notables, name_rex)
+pos <- re_exec(notables, name_rex)
+pos
 ```
 
 ```{r}
-re_exec_all(notables, name_rex)
+pos[[1]]
+```
+
+
+```{r}
+allpos <- re_exec_all(notables, name_rex)
+allpos
+```
+
+```{r}
+allpos[[1]]
 ```
 
 ## License
