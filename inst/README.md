@@ -17,6 +17,7 @@ and `gregexpr` to return the results in tidy data frames.
 ---
 
   - [Installation](#installation)
+  - [Rematch vs rematch2](#rematch-vs-rematch2)
   - [Usage](#usage)
     - [First match](#first-match)
     - [All matches](#all-matches)
@@ -29,6 +30,16 @@ and `gregexpr` to return the results in tidy data frames.
 ```r
 source("https://install-github.me/MangoTheCat/rematch2")
 ```
+
+## Rematch vs rematch2
+
+Note that `rematch2` is not compatible with the original `rematch` package.
+There are at least three major changes:
+* The order of the arguments for the functions is different. In
+  `rematch2` the `text` vector is first, and `pattern` is second.
+* In the result, `.match` is the last column instead of the first.
+* `rematch2` returns `tibble` data frames. See
+  https://github.com/hadley/tibble.
 
 ## Usage
 
