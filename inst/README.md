@@ -11,8 +11,17 @@
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/rematch2)](http://www.r-pkg.org/pkg/rematch2)
 [![Coverage Status](https://img.shields.io/codecov/c/github/MangoTheCat/rematch2/master.svg)](https://codecov.io/github/MangoTheCat/rematch2?branch=master)
 
-A small wrapper on regular expression matching functions 'regexpr'
-and 'gregexpr' to return the results in tidy data frames.
+A small wrapper on regular expression matching functions `regexpr`
+and `gregexpr` to return the results in tidy data frames.
+
+---
+
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [First match](#first-match)
+    - [All matches](#all-matches)
+    - [Match positions](#match-positions)
+- [License](#license)
 
 ## Installation
 
@@ -134,6 +143,40 @@ re_match_all(notables, name_rex)
 #> *    <list>    <list>    <list>
 #> 1 <chr [2]> <chr [2]> <chr [2]>
 #> 2 <chr [1]> <chr [1]> <chr [1]>
+```
+
+### Match positions
+
+`re_exec` and `re_exec_all` are similar to `re_match` and `re_match_all`,
+but they also return match positions. These functions return match
+records. `re_exec` returns one match record per data frame cell,
+`re_exec_all` returns a list of match records in each cell. A match record
+has three components: `match`, `start`, `end`.
+
+
+```r
+re_exec(notables, name_rex)
+```
+
+```
+#> # A tibble: 2 x 3
+#>        first       last     .match
+#> *     <list>     <list>     <list>
+#> 1 <list [3]> <list [3]> <list [3]>
+#> 2 <list [3]> <list [3]> <list [3]>
+```
+
+
+```r
+re_exec_all(notables, name_rex)
+```
+
+```
+#> # A tibble: 2 x 3
+#>        first       last     .match
+#> *     <list>     <list>     <list>
+#> 1 <list [3]> <list [3]> <list [3]>
+#> 2 <list [3]> <list [3]> <list [3]>
 ```
 
 ## License
