@@ -29,7 +29,7 @@
 #' @family tidy regular expression matching
 #' @export
 #' @examples
-#' #' name_rex <- paste0(
+#' name_rex <- paste0(
 #'   "(?<first>[[:upper:]][[:lower:]]+) ",
 #'   "(?<last>[[:upper:]][[:lower:]]+)"
 #' )
