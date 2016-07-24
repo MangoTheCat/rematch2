@@ -76,5 +76,6 @@ re_match <- function(text, pattern, ...) {
   }
 
   names(res) <- c(attr(match, "capture.names"), ".match")
+  class(res) <- c("tbl_df", "tbl", class(res))
   res
 }

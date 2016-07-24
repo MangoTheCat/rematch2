@@ -64,7 +64,7 @@ re_exec_all <- function(text, pattern, ...) {
     res,
     names = colnames,
     row.names = seq_along(text),
-    class = "data.frame"
+    class = c("tbl_df", "tbl", "data.frame")
   )
 }
 

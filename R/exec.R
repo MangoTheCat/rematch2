@@ -53,7 +53,7 @@ re_exec <- function(text, pattern, ...) {
     list(matchlist),
     names = ".match",
     row.names = seq_along(text),
-    class = "data.frame"
+    class = c("tbl_df", "tbl", "data.frame")
   )
 
   if (!is.null(attr(match, "capture.start"))) {
@@ -84,7 +84,7 @@ re_exec <- function(text, pattern, ...) {
       c(grouplists, res),
       names = c(attr(match, "capture.names"), ".match"),
       row.names = seq_along(text),
-      class = "data.frame"
+      class = c("tbl_df", "tbl", "data.frame")
     )
   }
 

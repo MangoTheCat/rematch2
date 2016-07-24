@@ -67,7 +67,7 @@ re_match_all <- function(text, pattern, ...) {
     res,
     names = c(attr(match[[1]], "capture.names"), ".match"),
     row.names = seq_along(text),
-    class = "data.frame"
+    class = c("tbl_df", "tbl", "data.frame")
   )
 }
 

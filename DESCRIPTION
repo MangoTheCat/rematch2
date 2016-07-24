@@ -12,5 +12,6 @@ BugReports: https://github.com/MangoTheCat/rematch2/issues
 RoxygenNote: 5.0.1
 Suggests:
     covr,
-    testthat
+    testthat,
+    tibble
 Encoding: UTF-8
