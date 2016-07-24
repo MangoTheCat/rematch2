@@ -7,6 +7,7 @@
 #'
 #' @docType package
 #' @name rematch2
+#' @importFrom tibble tibble
 NULL
 
 #' Match a regular expression to a character vector, return a data frame

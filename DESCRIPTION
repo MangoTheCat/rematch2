@@ -10,8 +10,9 @@ LazyData: true
 URL: https://github.com/MangoTheCat/rematch2
 BugReports: https://github.com/MangoTheCat/rematch2/issues
 RoxygenNote: 5.0.1
+Imports:
+    tibble
 Suggests:
     covr,
-    testthat,
-    tibble
+    testthat
 Encoding: UTF-8

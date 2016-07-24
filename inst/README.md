@@ -40,14 +40,16 @@ re_match(text = dates, pattern = isodate)
 ```
 
 ```
-#>                      .match
-#> 1 2016   04   20 2016-04-20
-#> 2 1977   08   08 1977-08-08
-#> 3 <NA> <NA> <NA>       <NA>
-#> 4 <NA> <NA> <NA>       <NA>
-#> 5 <NA> <NA> <NA>       <NA>
-#> 6 2012   06   30 2012-06-30
-#> 7 2015   01   21 2015-01-21
+#> # A tibble: 7 x 4
+#>                         .match
+#>   <chr> <chr> <chr>      <chr>
+#> 1  2016    04    20 2016-04-20
+#> 2  1977    08    08 1977-08-08
+#> 3  <NA>  <NA>  <NA>       <NA>
+#> 4  <NA>  <NA>  <NA>       <NA>
+#> 5  <NA>  <NA>  <NA>       <NA>
+#> 6  2012    06    30 2012-06-30
+#> 7  2015    01    21 2015-01-21
 ```
 
 Named capture groups:
@@ -58,14 +60,16 @@ re_match(text = dates, pattern = isodaten)
 ```
 
 ```
-#>   year month  day     .match
-#> 1 2016    04   20 2016-04-20
-#> 2 1977    08   08 1977-08-08
-#> 3 <NA>  <NA> <NA>       <NA>
-#> 4 <NA>  <NA> <NA>       <NA>
-#> 5 <NA>  <NA> <NA>       <NA>
-#> 6 2012    06   30 2012-06-30
-#> 7 2015    01   21 2015-01-21
+#> # A tibble: 7 x 4
+#>    year month   day     .match
+#>   <chr> <chr> <chr>      <chr>
+#> 1  2016    04    20 2016-04-20
+#> 2  1977    08    08 1977-08-08
+#> 3  <NA>  <NA>  <NA>       <NA>
+#> 4  <NA>  <NA>  <NA>       <NA>
+#> 5  <NA>  <NA>  <NA>       <NA>
+#> 6  2012    06    30 2012-06-30
+#> 7  2015    01    21 2015-01-21
 ```
 
 A slightly more complex example:
@@ -95,20 +99,16 @@ re_match(text = github_repos, pattern = github_rx)
 ```
 
 ```
-#>         owner    repo subdir                  ref pull  release  catchall
-#> 1    metacran  crandb                                                    
-#> 2  jeroenooms    curl                      v0.9.3                        
-#> 3   jimhester    covr                               47                   
-#> 4      hadley   dplyr                                  *release          
-#> 5 mangothecat remotes        550a3c7d3f9e1493a2ba                        
-#> 6                                                               /$&@R64&3
-#>                                     .match
-#> 1                          metacran/crandb
-#> 2                   jeroenooms/curl@v0.9.3
-#> 3                        jimhester/covr#47
-#> 4                    hadley/dplyr@*release
-#> 5 mangothecat/remotes@550a3c7d3f9e1493a2ba
-#> 6                                /$&@R64&3
+#> # A tibble: 6 x 8
+#>         owner    repo subdir                  ref  pull  release  catchall
+#>         <chr>   <chr>  <chr>                <chr> <chr>    <chr>     <chr>
+#> 1    metacran  crandb                                                     
+#> 2  jeroenooms    curl                      v0.9.3                         
+#> 3   jimhester    covr                                47                   
+#> 4      hadley   dplyr                                   *release          
+#> 5 mangothecat remotes        550a3c7d3f9e1493a2ba                         
+#> 6                                                                /$&@R64&3
+#> # ... with 1 more variables: .match <chr>
 ```
 
 ### All matches
@@ -129,9 +129,11 @@ re_match_all(notables, name_rex)
 ```
 
 ```
-#>            first            last                        .match
-#> 1 Ben, Jefferson Franklin, Davis Ben Franklin, Jefferson Davis
-#> 2        Millard        Fillmore              Millard Fillmore
+#> # A tibble: 2 x 3
+#>       first      last    .match
+#> *    <list>    <list>    <list>
+#> 1 <chr [2]> <chr [2]> <chr [2]>
+#> 2 <chr [1]> <chr [1]> <chr [1]>
 ```
 
 ## License
