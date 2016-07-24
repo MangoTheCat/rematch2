@@ -32,8 +32,7 @@ NULL
 #'   in the \code{text} vector.
 #'
 #' @export
-#' @seealso \code{\link{re_match_all}} for extracting all matches for a
-#'   string.
+#' @family tidy regular expression matching
 #' @examples
 #' dates <- c("2016-04-20", "1977-08-08", "not a date", "2016",
 #'   "76-03-02", "2012-06-30", "2015-01-21 19:58")

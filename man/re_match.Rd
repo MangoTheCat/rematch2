@@ -44,7 +44,7 @@ isodaten <- "(?<year>[0-9]{4})-(?<month>[0-1][0-9])-(?<day>[0-3][0-9])"
 re_match(text = dates, pattern = isodaten)
 }
 \seealso{
-\code{\link{re_match_all}} for extracting all matches for a
-  string.
+Other tidy.regular.expression.matching: \code{\link{re_exec_all}},
+  \code{\link{re_exec}}, \code{\link{re_match_all}}
 }
 

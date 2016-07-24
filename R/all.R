@@ -22,6 +22,7 @@
 #'   all columns are list columns containing character vectors.
 #'   The columns of named groups are named as well.
 #'
+#' @family tidy regular expression matching
 #' @export
 #' @examples
 #' name_rex <- paste0(
@@ -41,18 +42,7 @@ re_match_all <- function(text, pattern, ...) {
 
   ## Need to handle this case separately, as gregexpr effectively
   ## does not work for this.
-  if (length(text) == 0) {
-    match <- regexpr(pattern, text, perl = TRUE, ...)
-    num_groups <- length(attr(match, "capture.names"))
-    return(
-      structure(
-        replicate(num_groups + 1, list(), simplify = FALSE),
-        names = c(attr(match, "capture.names"), ".match"),
-        row.names = integer(0),
-        class = "data.frame"
-      )
-    )
-  }
+  if (length(text) == 0) return(empty_result(text, pattern, ...))
 
   match <- gregexpr(pattern, text, perl = TRUE, ...)
 
