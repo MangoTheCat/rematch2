@@ -113,6 +113,5 @@ exec1 <- function(text1, match1) {
     )
   }
 
-  names(res) <- colnames
   res
 }
