@@ -50,7 +50,7 @@ re_exec_all <- function(text, pattern, ...) {
 
   rec_names <- c("match", "start", "end")
   colnames <- c(attr(match[[1]], "capture.names"), ".match")
-  num_groups <- length(colnames)
+  num_groups <- length(colnames) - 1L
   non_rec <- structure(
     list(character(0), integer(0), integer(0)),
     names = rec_names

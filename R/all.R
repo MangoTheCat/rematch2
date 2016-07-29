@@ -76,7 +76,7 @@ match1 <- function(text1, match1) {
   matchstr <- substring(
     text1,
     match1,
-    match1 + attr(match1, "match.length") - 1
+    match1 + attr(match1, "match.length") - 1L
   )
 
   ## substring fails if the index is length zero,
@@ -87,7 +87,7 @@ match1 <- function(text1, match1) {
   } else {
     gstart  <- attr(match1, "capture.start")
     glength <- attr(match1, "capture.length")
-    gend    <- gstart + glength - 1
+    gend    <- gstart + glength - 1L
 
     groupstr <- substring(text1, gstart, gend)
     dim(groupstr) <- dim(gstart)

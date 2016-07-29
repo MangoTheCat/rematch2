@@ -53,7 +53,7 @@ re_match <- function(text, pattern, ...) {
 
   start  <- as.vector(match)
   length <- attr(match, "match.length")
-  end    <- start + length - 1
+  end    <- start + length - 1L
 
   matchstr <- substring(text, start, end)
   matchstr[ start == -1 ] <- NA_character_
@@ -67,7 +67,7 @@ re_match <- function(text, pattern, ...) {
 
     gstart  <- attr(match, "capture.start")
     glength <- attr(match, "capture.length")
-    gend    <- gstart + glength - 1
+    gend    <- gstart + glength - 1L
 
     groupstr <- substring(text, gstart, gend)
     groupstr[ gstart == -1 ] <- NA_character_
