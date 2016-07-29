@@ -66,8 +66,8 @@ re_exec <- function(text, pattern, ...) {
 
   if (!is.null(attr(match, "capture.start"))) {
 
-    gstart  <- attr(match, "capture.start")
-    glength <- attr(match, "capture.length")
+    gstart  <- unname(attr(match, "capture.start"))
+    glength <- unname(attr(match, "capture.length"))
     gend    <- gstart + glength - 1L
 
     groupstr <- substring(text, gstart, gend)

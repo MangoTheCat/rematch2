@@ -95,8 +95,8 @@ exec1 <- function(text1, match1) {
     replicate(length(colnames), matchrec, simplify = FALSE)
 
   } else {
-    gstart  <- attr(match1, "capture.start")
-    glength <- attr(match1, "capture.length")
+    gstart  <- unname(attr(match1, "capture.start"))
+    glength <- unname(attr(match1, "capture.length"))
     gend    <- gstart + glength - 1L
 
     groupstr <- substring(text1, gstart, gend)
