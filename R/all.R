@@ -53,8 +53,12 @@ re_match_all <- function(text, pattern, ...) {
   non <- vapply(match, function(m) m[1] == -1, TRUE)
   yes <- !non
   res <- replicate(length(text), list(), simplify = FALSE)
-  res[non] <- list(replicate(num_groups + 1, character(), simplify = FALSE))
-  res[yes] <- mapply(match1, text[yes], match[yes], SIMPLIFY = FALSE)
+  if (any(non)) {
+    res[non] <- list(replicate(num_groups + 1, character(), simplify = FALSE))
+  }
+  if (any(yes)) {
+    res[yes] <- mapply(match1, text[yes], match[yes], SIMPLIFY = FALSE)
+  }
 
   ## Need to assemble the final data frame "manually".
   ## There is apparently no function for this. rbind() is almost

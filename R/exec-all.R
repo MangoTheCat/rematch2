@@ -61,8 +61,12 @@ re_exec_all <- function(text, pattern, ...) {
   non <- vapply(match, function(m) m[1] == -1, TRUE)
   yes <- !non
   res <- replicate(length(text), list(), simplify = FALSE)
-  res[non] <- list(replicate(num_groups + 1, non_rec, simplify = FALSE))
-  res[yes] <- mapply(exec1, text[yes], match[yes], SIMPLIFY = FALSE)
+  if (any(non)) {
+    res[non] <- list(replicate(num_groups + 1, non_rec, simplify = FALSE))
+  }
+  if (any(yes)) {
+    res[yes] <- mapply(exec1, text[yes], match[yes], SIMPLIFY = FALSE)
+  }
 
   res <- lapply(seq_along(res[[1]]), function(i) {
     lapply(res, "[[", i)
