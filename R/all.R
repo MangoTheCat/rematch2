@@ -17,7 +17,8 @@
 #' @return A data frame with all matching (sub)strings and capture groups
 #'   for all matches in all input strings. The rows of the data frame
 #'   correspond to the input strings in \code{text}. The columns correspond
-#'   to the capture groups plus the last column called \code{.match}
+#'   to the capture groups, with two additional columns: \code{.text} is
+#'   the input text, and the last column, \code{.match}
 #'   corresponds to the complete matches. Since all matches are returned
 #'   all columns are list columns containing character vectors.
 #'   The columns of named groups are named as well.
@@ -67,12 +68,16 @@ re_match_all <- function(text, pattern, ...) {
     lapply(res, "[[", i)
   })
 
-  structure(
+  res <- structure(
     res,
     names = c(attr(match[[1]], "capture.names"), ".match"),
     row.names = seq_along(text),
     class = c("tbl_df", "tbl", "data.frame")
   )
+
+  res$.text <- text
+  nc <- ncol(res)
+  res[, c(seq_len(nc - 2), nc, nc - 1)]
 }
 
 match1 <- function(text1, match1) {

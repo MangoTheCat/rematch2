@@ -60,16 +60,16 @@ re_match(text = dates, pattern = isodate)
 ```
 
 ```
-#> # A tibble: 7 × 4
-#>      ``    ``    ``     .match
-#>   <chr> <chr> <chr>      <chr>
-#> 1  2016    04    20 2016-04-20
-#> 2  1977    08    08 1977-08-08
-#> 3  <NA>  <NA>  <NA>       <NA>
-#> 4  <NA>  <NA>  <NA>       <NA>
-#> 5  <NA>  <NA>  <NA>       <NA>
-#> 6  2012    06    30 2012-06-30
-#> 7  2015    01    21 2015-01-21
+#> # A tibble: 7 × 5
+#>      ``    ``    ``            .text     .match
+#>   <chr> <chr> <chr>            <chr>      <chr>
+#> 1  2016    04    20       2016-04-20 2016-04-20
+#> 2  1977    08    08       1977-08-08 1977-08-08
+#> 3  <NA>  <NA>  <NA>       not a date       <NA>
+#> 4  <NA>  <NA>  <NA>             2016       <NA>
+#> 5  <NA>  <NA>  <NA>         76-03-02       <NA>
+#> 6  2012    06    30       2012-06-30 2012-06-30
+#> 7  2015    01    21 2015-01-21 19:58 2015-01-21
 ```
 
 Named capture groups:
@@ -80,16 +80,16 @@ re_match(text = dates, pattern = isodaten)
 ```
 
 ```
-#> # A tibble: 7 × 4
-#>    year month   day     .match
-#>   <chr> <chr> <chr>      <chr>
-#> 1  2016    04    20 2016-04-20
-#> 2  1977    08    08 1977-08-08
-#> 3  <NA>  <NA>  <NA>       <NA>
-#> 4  <NA>  <NA>  <NA>       <NA>
-#> 5  <NA>  <NA>  <NA>       <NA>
-#> 6  2012    06    30 2012-06-30
-#> 7  2015    01    21 2015-01-21
+#> # A tibble: 7 × 5
+#>    year month   day            .text     .match
+#>   <chr> <chr> <chr>            <chr>      <chr>
+#> 1  2016    04    20       2016-04-20 2016-04-20
+#> 2  1977    08    08       1977-08-08 1977-08-08
+#> 3  <NA>  <NA>  <NA>       not a date       <NA>
+#> 4  <NA>  <NA>  <NA>             2016       <NA>
+#> 5  <NA>  <NA>  <NA>         76-03-02       <NA>
+#> 6  2012    06    30       2012-06-30 2012-06-30
+#> 7  2015    01    21 2015-01-21 19:58 2015-01-21
 ```
 
 A slightly more complex example:
@@ -119,7 +119,7 @@ re_match(text = github_repos, pattern = github_rx)
 ```
 
 ```
-#> # A tibble: 6 × 8
+#> # A tibble: 6 × 9
 #>         owner    repo subdir                  ref  pull  release  catchall
 #>         <chr>   <chr>  <chr>                <chr> <chr>    <chr>     <chr>
 #> 1    metacran  crandb                                                     
@@ -128,7 +128,7 @@ re_match(text = github_repos, pattern = github_rx)
 #> 4      hadley   dplyr                                   *release          
 #> 5 mangothecat remotes        550a3c7d3f9e1493a2ba                         
 #> 6                                                                /$&@R64&3
-#> # ... with 1 more variables: .match <chr>
+#> # ... with 2 more variables: .text <chr>, .match <chr>
 ```
 
 ### All matches
@@ -150,11 +150,11 @@ not
 ```
 
 ```
-#> # A tibble: 2 × 3
-#>       first      last    .match
-#> *    <list>    <list>    <list>
-#> 1 <chr [2]> <chr [2]> <chr [2]>
-#> 2 <chr [1]> <chr [1]> <chr [1]>
+#> # A tibble: 2 × 4
+#>       first      last                              .text    .match
+#>      <list>    <list>                              <chr>    <list>
+#> 1 <chr [2]> <chr [2]>   Ben Franklin and Jefferson Davis <chr [2]>
+#> 2 <chr [1]> <chr [1]>                 \tMillard Fillmore <chr [1]>
 ```
 
 
@@ -209,11 +209,11 @@ pos
 ```
 
 ```
-#> # A tibble: 2 × 3
-#>        first       last     .match
-#> *     <list>     <list>     <list>
-#> 1 <list [3]> <list [3]> <list [3]>
-#> 2 <list [3]> <list [3]> <list [3]>
+#> # A tibble: 2 × 4
+#>        first       last                              .text     .match
+#> *     <list>     <list>                              <chr>     <list>
+#> 1 <list [3]> <list [3]>   Ben Franklin and Jefferson Davis <list [3]>
+#> 2 <list [3]> <list [3]>                 \tMillard Fillmore <list [3]>
 ```
 
 
@@ -252,11 +252,11 @@ allpos
 ```
 
 ```
-#> # A tibble: 2 × 3
-#>        first       last     .match
-#> *     <list>     <list>     <list>
-#> 1 <list [3]> <list [3]> <list [3]>
-#> 2 <list [3]> <list [3]> <list [3]>
+#> # A tibble: 2 × 4
+#>        first       last                              .text     .match
+#>       <list>     <list>                              <chr>     <list>
+#> 1 <list [3]> <list [3]>   Ben Franklin and Jefferson Davis <list [3]>
+#> 2 <list [3]> <list [3]>                 \tMillard Fillmore <list [3]>
 ```
 
 

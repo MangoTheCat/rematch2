@@ -12,8 +12,8 @@
 #' tidy data frame. The strings of the character vector correspond
 #' to the rows of the data frame. The columns correspond to capture groups
 #' and the first matching (sub)string. The columns of named capture groups
-#' are named accordingly, and the column of the full match if the last
-#' column and it is named \code{.match}.
+#' are named accordingly, and there are two additional columns.
+#' \code{.text} contains the input text, and \code{.match} the full match.
 #'
 #' Each column of the result is a list, containing lists of match records.
 #' A match record is a named list, with entries \code{match}, \code{start}
@@ -72,12 +72,16 @@ re_exec_all <- function(text, pattern, ...) {
     lapply(res, "[[", i)
   })
 
-  structure(
+  res <- structure(
     res,
     names = colnames,
     row.names = seq_along(text),
     class = c("tbl_df", "tbl", "data.frame")
   )
+
+  res$.text <- text
+  nc <- ncol(res)
+  res[, c(seq_len(nc - 2), nc, nc - 1)]
 }
 
 exec1 <- function(text1, match1) {

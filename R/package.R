@@ -28,9 +28,9 @@ NULL
 #' @param ... Additional arguments to pass to
 #'   \code{\link[base]{regexpr}}.
 #' @return A data frame of character vectors: one column per capture
-#'   group, named if the group was named, and an additional column for
-#'   the first matching (sub)string. Each row corresponds to an element
-#'   in the \code{text} vector.
+#'   group, named if the group was named, and additional columns for
+#'   the input text and the first matching (sub)string. Each row
+#'   corresponds to an element in the \code{text} vector.
 #'
 #' @export
 #' @family tidy regular expression matching
@@ -60,6 +60,7 @@ re_match <- function(text, pattern, ...) {
 
   res <- data.frame(
     stringsAsFactors = FALSE,
+    .text = text,
     .match = matchstr
   )
 
@@ -76,7 +77,7 @@ re_match <- function(text, pattern, ...) {
     res <- cbind(groupstr, res, stringsAsFactors = FALSE)
   }
 
-  names(res) <- c(attr(match, "capture.names"), ".match")
+  names(res) <- c(attr(match, "capture.names"), ".text", ".match")
   class(res) <- c("tbl_df", "tbl", class(res))
   res
 }

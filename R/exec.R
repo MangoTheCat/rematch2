@@ -8,8 +8,8 @@
 #' of the character vector correspond to the rows of the data frame.
 #' The columns correspond to capture groups and the first matching
 #' (sub)string. The columns of named capture groups are named accordingly,
-#' and the column of the full match if the last column and it is named
-#' \code{.match}.
+#' the column called \code{.text} contains the input text, and the
+#' column of the full match is last, and it is named \code{.match}.
 #'
 #' Each column of the result is a list, containing match records.
 #' A match record is a named list, with entries \code{match}, \code{start}
@@ -58,8 +58,8 @@ re_exec <- function(text, pattern, ...) {
   })
 
   res <- structure(
-    list(matchlist),
-    names = ".match",
+    list(text, matchlist),
+    names = c(".text", ".match"),
     row.names = seq_along(text),
     class = c("tbl_df", "tbl", "data.frame")
   )
@@ -90,7 +90,7 @@ re_exec <- function(text, pattern, ...) {
 
     res <- structure(
       c(grouplists, res),
-      names = c(attr(match, "capture.names"), ".match"),
+      names = c(attr(match, "capture.names"), ".text", ".match"),
       row.names = seq_along(text),
       class = c("tbl_df", "tbl", "data.frame")
     )

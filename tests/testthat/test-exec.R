@@ -3,36 +3,44 @@ context("re_exec")
 
 test_that("corner cases", {
 
-  res <- re_exec(c("foo", "bar"), "")
+  res <- re_exec(.text <- c("foo", "bar"), "")
   expect_equal(
-    as.data.frame(res),
-    asdf(.match = list(mrec("", 1, 0), mrec("", 1, 0)))
+    res,
+    df(.text = .text, .match = list(mrec("", 1, 0), mrec("", 1, 0)))
   )
 
-  res <- re_exec(c("foo", "", "bar"), "")
+  res <- re_exec(.text <- c("foo", "", "bar"), "")
   expect_equal(
-    as.data.frame(res),
-    asdf(.match = list(mrec("", 1, 0), mrec("", 1, 0), mrec("", 1, 0)))
+    res,
+    df(
+      .text = .text,
+      .match = list(mrec("", 1, 0), mrec("", 1, 0), mrec("", 1, 0))
+    )
   )
 
-  res <- re_exec(character(), "")
-  expect_equal(as.data.frame(res), asdf(.match = list()))
+  res <- re_exec(.text <- character(), "")
+  expect_equal(as.data.frame(res), asdf(.text = .text, .match = list()))
 
-  res <- re_exec(character(), "foo")
-  expect_equal(as.data.frame(res), asdf(.match = list()))
+  res <- re_exec(.text <- character(), "foo")
+  expect_equal(as.data.frame(res), asdf(.text = .text, .match = list()))
 
-  res <- re_exec(character(), "foo (g1) (g2)")
-  expect_equal(as.data.frame(res), asdf(list(), list(), .match = list()))
-
-  res <- re_exec(character(), "foo (g1) (?<name>g2)")
+  res <- re_exec(.text <- character(), "foo (g1) (g2)")
   expect_equal(
     as.data.frame(res),
-    asdf(list(), name = list(), .match = list())
+    asdf(list(), list(), .text = .text, .match = list())
   )
 
-  res <- re_exec("not", "foo")
-  expect_equal(as.data.frame(res), asdf(.match = list(mrec(NA, NA, NA))))
+  res <- re_exec(.text <- character(), "foo (g1) (?<name>g2)")
+  expect_equal(
+    as.data.frame(res),
+    asdf(list(), name = list(), .text = .text, .match = list())
+  )
 
+  res <- re_exec(.text <- "not", "foo")
+  expect_equal(
+    as.data.frame(res),
+    asdf(.text = .text, .match = list(mrec(NA, NA, NA)))
+  )
 })
 
 test_that("not so corner cases", {
@@ -53,6 +61,7 @@ test_that("not so corner cases", {
       mrec("20", 9, 10), mrec("08", 9, 10), narec(), narec(), narec(),
       mrec("30", 9, 10), mrec("21", 9, 10)
     ),
+    .text = dates,
     .match = list(
       mrec("2016-04-20", 1, 10), mrec("1977-08-08", 1, 10), narec(),
       narec(), narec(), mrec("2012-06-30", 1, 10),
@@ -78,6 +87,7 @@ test_that("not so corner cases", {
       mrec("20", 9, 10), mrec("08", 9, 10), narec(), narec(), narec(),
       mrec("30", 9, 10), mrec("21", 9, 10)
     ),
+    .text = dates,
     .match = list(
       mrec("2016-04-20", 1, 10), mrec("1977-08-08", 1, 10), narec(),
       narec(), narec(), mrec("2012-06-30", 1, 10),
@@ -100,7 +110,7 @@ test_that("UTF8", {
   res <- re_exec(str, pat)
   expect_equal(
     as.data.frame(res),
-    asdf(.match = list(mrec(pat, 1, 5)))
+    asdf(.text = str, .match = list(mrec(pat, 1, 5)))
   )
 
 })
@@ -108,22 +118,24 @@ test_that("UTF8", {
 
 test_that("text is scalar & capture groups", {
 
-  res <- re_exec("foo bar", "(\\w+) (\\w+)")
+  res <- re_exec(.text <- "foo bar", "(\\w+) (\\w+)")
   expect_equal(
     as.data.frame(res),
     asdf(
       list(mrec("foo", 1, 3)),
       list(mrec("bar", 5, 7)),
+      .text = .text,
       .match = list(mrec("foo bar", 1, 7))
     )
   )
 
-  res <- re_exec("foo bar", "(?<g1>\\w+) (?<g2>\\w+)")
+  res <- re_exec(.text <- "foo bar", "(?<g1>\\w+) (?<g2>\\w+)")
   expect_equal(
     as.data.frame(res),
     asdf(
       g1 = list(mrec("foo", 1, 3)),
       g2 = list(mrec("bar", 5, 7)),
+      .text = .text,
       .match = list(mrec("foo bar", 1, 7))
     )
   )
