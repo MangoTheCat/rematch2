@@ -94,10 +94,13 @@ test_that("not so corner cases", {
 
 test_that("UTF8", {
 
-  res <- re_exec("Gábor Csárdi", "Gábor")
+  str <- "Gábor Csárdi"
+  pat <- "Gábor"
+  Encoding(str) <- Encoding(pat) <- "UTF-8"
+  res <- re_exec(str, pat)
   expect_equal(
     as.data.frame(res),
-    asdf(.match = list(mrec("Gábor", 1, 5)))
+    asdf(.match = list(mrec(pat, 1, 5)))
   )
 
 })
