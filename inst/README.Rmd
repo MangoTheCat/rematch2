@@ -121,9 +121,9 @@ not$.match
 
 `re_exec` and `re_exec_all` are similar to `re_match` and `re_match_all`,
 but they also return match positions. These functions return match
-records. `re_exec` returns one match record per data frame cell,
-`re_exec_all` returns a list of match records in each cell. A match record
-has three components: `match`, `start`, `end`.
+records. A match record has three components: `match`, `start`, `end`, and
+each component can be a vector. It is similar to a data frame in this
+respect.
 
 ```{r}
 pos <- re_exec(notables, name_rex)
@@ -131,7 +131,7 @@ pos
 ```
 
 ```{r}
-pos[[1]]
+pos$first
 ```
 
 
@@ -141,7 +141,7 @@ allpos
 ```
 
 ```{r}
-allpos[[1]]
+allpos$first
 ```
 
 ## License

@@ -60,8 +60,8 @@ re_match(text = dates, pattern = isodate)
 ```
 
 ```
-#> # A tibble: 7 x 4
-#>                         .match
+#> # A tibble: 7 × 4
+#>      ``    ``    ``     .match
 #>   <chr> <chr> <chr>      <chr>
 #> 1  2016    04    20 2016-04-20
 #> 2  1977    08    08 1977-08-08
@@ -80,7 +80,7 @@ re_match(text = dates, pattern = isodaten)
 ```
 
 ```
-#> # A tibble: 7 x 4
+#> # A tibble: 7 × 4
 #>    year month   day     .match
 #>   <chr> <chr> <chr>      <chr>
 #> 1  2016    04    20 2016-04-20
@@ -119,7 +119,7 @@ re_match(text = github_repos, pattern = github_rx)
 ```
 
 ```
-#> # A tibble: 6 x 8
+#> # A tibble: 6 × 8
 #>         owner    repo subdir                  ref  pull  release  catchall
 #>         <chr>   <chr>  <chr>                <chr> <chr>    <chr>     <chr>
 #> 1    metacran  crandb                                                     
@@ -150,7 +150,7 @@ not
 ```
 
 ```
-#> # A tibble: 2 x 3
+#> # A tibble: 2 × 3
 #>       first      last    .match
 #> *    <list>    <list>    <list>
 #> 1 <chr [2]> <chr [2]> <chr [2]>
@@ -198,9 +198,9 @@ not$.match
 
 `re_exec` and `re_exec_all` are similar to `re_match` and `re_match_all`,
 but they also return match positions. These functions return match
-records. `re_exec` returns one match record per data frame cell,
-`re_exec_all` returns a list of match records in each cell. A match record
-has three components: `match`, `start`, `end`.
+records. A match record has three components: `match`, `start`, `end`, and
+each component can be a vector. It is similar to a data frame in this
+respect.
 
 
 ```r
@@ -209,7 +209,7 @@ pos
 ```
 
 ```
-#> # A tibble: 2 x 3
+#> # A tibble: 2 × 3
 #>        first       last     .match
 #> *     <list>     <list>     <list>
 #> 1 <list [3]> <list [3]> <list [3]>
@@ -218,7 +218,7 @@ pos
 
 
 ```r
-pos[[1]]
+pos$first
 ```
 
 ```
@@ -227,12 +227,10 @@ pos[[1]]
 #> [1] "Ben"
 #> 
 #> [[1]]$start
-#> first 
-#>     3 
+#> [1] 3
 #> 
 #> [[1]]$end
-#> first 
-#>     5 
+#> [1] 5
 #> 
 #> 
 #> [[2]]
@@ -240,12 +238,10 @@ pos[[1]]
 #> [1] "Millard"
 #> 
 #> [[2]]$start
-#> first 
-#>     2 
+#> [1] 2
 #> 
 #> [[2]]$end
-#> first 
-#>     8
+#> [1] 8
 ```
 
 
@@ -256,7 +252,7 @@ allpos
 ```
 
 ```
-#> # A tibble: 2 x 3
+#> # A tibble: 2 × 3
 #>        first       last     .match
 #> *     <list>     <list>     <list>
 #> 1 <list [3]> <list [3]> <list [3]>
@@ -265,7 +261,7 @@ allpos
 
 
 ```r
-allpos[[1]]
+allpos$first
 ```
 
 ```
@@ -285,12 +281,10 @@ allpos[[1]]
 #> [1] "Millard"
 #> 
 #> [[2]]$start
-#> first 
-#>     2 
+#> [1] 2
 #> 
 #> [[2]]$end
-#> first 
-#>     8
+#> [1] 8
 ```
 
 ## License
