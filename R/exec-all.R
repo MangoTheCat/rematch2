@@ -23,7 +23,14 @@
 #' If a string has no match, then an empty list is included in the list
 #' column for it.
 #'
+#' To make it easier to extract matching substrings or positions, a
+#' special \code{$} operator is defined on match columns. (Both the
+#' \code{.match} column and the columns corresponsing to the match groups.)
+#' See example below.
+#'
 #' @inheritParams re_match_all
+#' @param x Object returned by \code{re_exec_all}.
+#' @param name \code{match}, \code{start} or \code{end}.
 #' @return A data frame with list columns, see details below.
 #'
 #' @family tidy regular expression matching
@@ -37,7 +44,13 @@
 #'   "  Ben Franklin and Jefferson Davis",
 #'   "\tMillard Fillmore"
 #' )
-#' re_exec(notables, name_rex)
+#' allpos <- re_exec(notables, name_rex)
+#' allpos
+#'
+#' # Custom $ to extract matches and positions
+#' allpos$first$match
+#' allpos$first$start
+#' allpos$first$end
 
 re_exec_all <- function(text, pattern, ...) {
 

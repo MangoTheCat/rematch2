@@ -130,10 +130,20 @@ pos <- re_exec(notables, name_rex)
 pos
 ```
 
+Unfortunately R does not allow hierarchical data frames (i.e. a column of a
+data frame cannot be another data frame), but `rematch2` defines some
+special classes and an `$` operator, to make it easier to extract parts
+of `re_exec` and `re_exec_all` matches. You simply query the `match`,
+`start` or `end` part of a column:
+
 ```{r}
-pos$first
+pos$first$match
+pos$first$start
+pos$first$end
 ```
 
+`re_exec_all` is very similar, but these queries return lists, with
+arbitrary number of matches:
 
 ```{r}
 allpos <- re_exec_all(notables, name_rex)
@@ -141,7 +151,9 @@ allpos
 ```
 
 ```{r}
-allpos$first
+allpos$first$match
+allpos$first$start
+allpos$first$end
 ```
 
 ## License

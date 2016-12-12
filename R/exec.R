@@ -19,7 +19,14 @@
 #' Non-matching strings contain NAs in their corresponding rows, for the
 #' matches and the positions as well.
 #'
+#' To make it easier to extract matching substrings or positions, a
+#' special \code{$} operator is defined on match columns. (Both the
+#' \code{.match} column and the columns corresponsing to the match groups.)
+#' See example below.
+#'
 #' @inheritParams re_match
+#' @param x Object returned by \code{re_exec}.
+#' @param name \code{match}, \code{start} or \code{end}.
 #' @return A data frame with list columns. See the details below.
 #'
 #' @family tidy regular expression matching
@@ -33,7 +40,14 @@
 #'   "  Ben Franklin and Jefferson Davis",
 #'   "\tMillard Fillmore"
 #' )
-#' re_exec(notables, name_rex)
+#' pos <- re_exec(notables, name_rex)
+#' pos
+#'
+#' # Custom $ to extract matches and positions
+#' # for groups or the whole match
+#' pos$first$match
+#' pos$first$start
+#' pos$first$end
 
 re_exec <- function(text, pattern, ...) {
 

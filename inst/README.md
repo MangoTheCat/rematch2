@@ -216,34 +216,39 @@ pos
 #> 2 <list [3]> <list [3]>                 \tMillard Fillmore <list [3]>
 ```
 
+Unfortunately R does not allow hierarchical data frames (i.e. a column of a
+data frame cannot be another data frame), but `rematch2` defines some
+special classes and an `$` operator, to make it easier to extract parts
+of `re_exec` and `re_exec_all` matches. You simply query the `match`,
+`start` or `end` part of a column:
+
 
 ```r
-pos$first
+pos$first$match
 ```
 
 ```
-#> [[1]]
-#> [[1]]$match
-#> [1] "Ben"
-#> 
-#> [[1]]$start
-#> [1] 3
-#> 
-#> [[1]]$end
-#> [1] 5
-#> 
-#> 
-#> [[2]]
-#> [[2]]$match
-#> [1] "Millard"
-#> 
-#> [[2]]$start
-#> [1] 2
-#> 
-#> [[2]]$end
-#> [1] 8
+#> [1] "Ben"     "Millard"
 ```
 
+```r
+pos$first$start
+```
+
+```
+#> [1] 3 2
+```
+
+```r
+pos$first$end
+```
+
+```
+#> [1] 5 8
+```
+
+`re_exec_all` is very similar, but these queries return lists, with
+arbitrary number of matches:
 
 
 ```r
@@ -261,29 +266,38 @@ allpos
 
 
 ```r
-allpos$first
+allpos$first$match
 ```
 
 ```
 #> [[1]]
-#> [[1]]$match
 #> [1] "Ben"       "Jefferson"
 #> 
-#> [[1]]$start
+#> [[2]]
+#> [1] "Millard"
+```
+
+```r
+allpos$first$start
+```
+
+```
+#> [[1]]
 #> [1]  3 20
 #> 
-#> [[1]]$end
+#> [[2]]
+#> [1] 2
+```
+
+```r
+allpos$first$end
+```
+
+```
+#> [[1]]
 #> [1]  5 28
 #> 
-#> 
 #> [[2]]
-#> [[2]]$match
-#> [1] "Millard"
-#> 
-#> [[2]]$start
-#> [1] 2
-#> 
-#> [[2]]$end
 #> [1] 8
 ```
 
