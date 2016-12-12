@@ -68,3 +68,20 @@ test_that("re_exec_all indexing", {
   expect_identical(allpos$.match$start, list(c(3L, 20L), 2L))
   expect_identical(allpos$.match$end, list(c(14L, 34L), 17L))
 })
+
+test_that("$ errors", {
+
+  name_rex <- paste0(
+    "(?<first>[[:upper:]][[:lower:]]+) ",
+    "(?<last>[[:upper:]][[:lower:]]+)"
+  )
+  notables <- c(
+    "  Ben Franklin and Jefferson Davis",
+    "\tMillard Fillmore"
+  )
+  pos <- re_exec(notables, name_rex)
+  allpos <- re_exec_all(notables, name_rex)
+
+  expect_error(pos$first$foo)
+  expect_error(allpos$first$foo)
+})
