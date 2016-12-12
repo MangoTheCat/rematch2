@@ -32,8 +32,8 @@ substrings for a regular expression, but it returns the results in a
 tidy data frame. The strings of the character vector correspond
 to the rows of the data frame. The columns correspond to capture groups
 and the first matching (sub)string. The columns of named capture groups
-are named accordingly, and the column of the full match if the last
-column and it is named \code{.match}.
+are named accordingly, and there are two additional columns.
+\code{.text} contains the input text, and \code{.match} the full match.
 
 Each column of the result is a list, containing lists of match records.
 A match record is a named list, with entries \code{match}, \code{start}
@@ -55,7 +55,7 @@ notables <- c(
 re_exec(notables, name_rex)
 }
 \seealso{
-Other tidy.regular.expression.matching: \code{\link{re_exec}},
+Other tidy regular expression matching: \code{\link{re_exec}},
   \code{\link{re_match_all}}, \code{\link{re_match}}
 }
 

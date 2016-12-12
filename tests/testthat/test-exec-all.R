@@ -8,7 +8,7 @@ test_that("corner cases", {
     as.data.frame(res),
     asdf(
       .text = .text,
-      .match = list(
+      .match = allreclist(
         list(
           match = c("", "", ""),
           start = c(1L, 2L, 3L),
@@ -28,7 +28,7 @@ test_that("corner cases", {
     as.data.frame(res),
     asdf(
       .text = .text,
-      .match = list(
+      .match = allreclist(
         list(
           match = "",
           start = 1L,
@@ -44,17 +44,17 @@ test_that("corner cases", {
   )
 
   res <- re_exec_all(.text <- character(), "")
-  expect_equal(as.data.frame(res), asdf(.text = .text, .match = list()))
+  expect_equal(as.data.frame(res), asdf(.text = .text, .match = allreclist()))
 
   res <- re_exec_all(.text <- character(), "foo")
-  expect_equal(as.data.frame(res), asdf(.text = .text, .match = list()))
+  expect_equal(as.data.frame(res), asdf(.text = .text, .match = allreclist()))
 
   res <- re_exec_all(.text <- "not", "foo")
   expect_equal(
     as.data.frame(res),
     asdf(
       .text = .text,
-      .match = list(mrec(character(), integer(), integer()))
+      .match = allreclist(mrec(character(), integer(), integer()))
     )
   )
 })
@@ -71,12 +71,12 @@ test_that("capture groups", {
   expect_equal(
     as.data.frame(res),
     asdf(
-      list(
+      allreclist(
         mrec(c("123", "456"), c(1L, 8L), c(3L, 10L)), norec(), norec(),
         mrec("1", 1L, 1L), mrec("123", 1, 3)
       ),
       .text = .text,
-      .match = list(
+      .match = allreclist(
         mrec(c("123", "456"), c(1L, 8L), c(3L, 10L)), norec(), norec(),
         mrec("1", 1L, 1L), mrec("123", 1, 3)
       )
@@ -92,9 +92,9 @@ test_that("scalar text with capure groups", {
   expect_equal(
     as.data.frame(res),
     asdf(
-      list(mrec(c("foo", "bar"), c(1L, 5L), c(3L, 7L))),
+      allreclist(mrec(c("foo", "bar"), c(1L, 5L), c(3L, 7L))),
       .text = .text,
-      .match = list(mrec(c("foo", "bar"), c(1L, 5L), c(3L, 7L)))
+      .match = allreclist(mrec(c("foo", "bar"), c(1L, 5L), c(3L, 7L)))
     )
   )
 
@@ -102,9 +102,9 @@ test_that("scalar text with capure groups", {
   expect_equal(
     as.data.frame(res),
     asdf(
-      word = list(mrec(c("foo", "bar"), c(1L, 5L), c(3L, 7L))),
+      word = allreclist(mrec(c("foo", "bar"), c(1L, 5L), c(3L, 7L))),
       .text = .text,
-      .match = list(mrec(c("foo", "bar"), c(1L, 5L), c(3L, 7L)))
+      .match = allreclist(mrec(c("foo", "bar"), c(1L, 5L), c(3L, 7L)))
     )
   )
 

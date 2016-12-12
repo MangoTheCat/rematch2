@@ -20,7 +20,8 @@ for more about regular expressions.}
 A data frame with all matching (sub)strings and capture groups
   for all matches in all input strings. The rows of the data frame
   correspond to the input strings in \code{text}. The columns correspond
-  to the capture groups plus the last column called \code{.match}
+  to the capture groups, with two additional columns: \code{.text} is
+  the input text, and the last column, \code{.match}
   corresponds to the complete matches. Since all matches are returned
   all columns are list columns containing character vectors.
   The columns of named groups are named as well.
@@ -48,7 +49,7 @@ notables <- c(
 re_match_all(notables, name_rex)
 }
 \seealso{
-Other tidy.regular.expression.matching: \code{\link{re_exec_all}},
+Other tidy regular expression matching: \code{\link{re_exec_all}},
   \code{\link{re_exec}}, \code{\link{re_match}}
 }
 

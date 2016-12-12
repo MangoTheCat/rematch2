@@ -44,7 +44,13 @@ re_exec_all <- function(text, pattern, ...) {
   text <- as.character(text)
   stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
 
-  if (length(text) == 0) return(empty_result(text, pattern, ...))
+  if (length(text) == 0) {
+    res <- empty_result(text, pattern, ...)
+    for (i in seq_along(res)) {
+      if (is.list(res[[i]])) class(res[[i]]) <- "rematch_allrecords"
+    }
+    return(res)
+  }
 
   match <- gregexpr(pattern, text, perl = TRUE, ...)
 
@@ -69,7 +75,7 @@ re_exec_all <- function(text, pattern, ...) {
   }
 
   res <- lapply(seq_along(res[[1]]), function(i) {
-    lapply(res, "[[", i)
+    structure(lapply(res, "[[", i), class = "rematch_allrecords")
   })
 
   res <- structure(

@@ -27,8 +27,8 @@ The results are returned in a data frame with list columns. The strings
 of the character vector correspond to the rows of the data frame.
 The columns correspond to capture groups and the first matching
 (sub)string. The columns of named capture groups are named accordingly,
-and the column of the full match if the last column and it is named
-\code{.match}.
+the column called \code{.text} contains the input text, and the
+column of the full match is last, and it is named \code{.match}.
 
 Each column of the result is a list, containing match records.
 A match record is a named list, with entries \code{match}, \code{start}
@@ -50,7 +50,7 @@ notables <- c(
 re_exec(notables, name_rex)
 }
 \seealso{
-Other tidy.regular.expression.matching: \code{\link{re_exec_all}},
+Other tidy regular expression matching: \code{\link{re_exec_all}},
   \code{\link{re_match_all}}, \code{\link{re_match}}
 }
 

@@ -28,3 +28,11 @@ narec <- function() {
 norec <- function() {
   mrec(character(), integer(), integer())
 }
+
+reclist <- function(...) {
+  structure(list(...), class = "rematch_records")
+}
+
+allreclist <- function(...) {
+  structure(list(...), class = "rematch_allrecords")
+}

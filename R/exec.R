@@ -53,9 +53,12 @@ re_exec <- function(text, pattern, ...) {
 
   names <- c("match", "start", "end")
 
-  matchlist <- lapply(seq_along(text), function(i) {
-    structure(list(matchstr[i], start[i], end[i]), names = names)
-  })
+  matchlist <- structure(
+    lapply(seq_along(text), function(i) {
+      structure(list(matchstr[i], start[i], end[i]), names = names)
+    }),
+    class = "rematch_records"
+  )
 
   res <- structure(
     list(text, matchlist),
@@ -79,12 +82,15 @@ re_exec <- function(text, pattern, ...) {
     grouplists <- lapply(
       seq_along(attr(match, "capture.names")),
       function(g) {
-        lapply(seq_along(text), function(i) {
-          structure(
-            list(groupstr[i, g], gstart[i, g], gend[i, g]),
-            names = names
-          )
-        })
+        structure(
+          lapply(seq_along(text), function(i) {
+            structure(
+              list(groupstr[i, g], gstart[i, g], gend[i, g]),
+              names = names
+            )
+          }),
+          class = "rematch_records"
+        )
       }
     )
 
