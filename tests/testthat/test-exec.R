@@ -141,3 +141,18 @@ test_that("text is scalar & capture groups", {
   )
 
 })
+
+test_that("perl argument", {
+  # using perl=TRUE used to cause an error; not important in this case, but must
+  # be supported if we want this to be a drop in replacement for other functions
+  # (e.g. re-implenting `strsplit` with a rematch2 backend)
+
+  res <- re_exec(.text <- "foo bar", "\\w+", perl=TRUE)
+  expect_equal(
+    as.data.frame(res),
+    asdf(
+      .text = .text,
+      .match = reclist(mrec("foo", 1, 3))
+    )
+  )
+})
