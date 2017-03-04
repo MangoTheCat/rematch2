@@ -36,16 +36,16 @@
 #' )
 #' re_match_all(notables, name_rex)
 
-re_match_all <- function(text, pattern, ...) {
+re_match_all <- function(text, pattern, perl=TRUE, ...) {
 
   text <- as.character(text)
   stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
 
   ## Need to handle this case separately, as gregexpr effectively
   ## does not work for this.
-  if (length(text) == 0) return(empty_result(text, pattern, ...))
+  if (length(text) == 0) return(empty_result(text, pattern, perl=perl, ...))
 
-  match <- gregexpr(pattern, text, perl = TRUE, ...)
+  match <- gregexpr(pattern, text, perl=perl, ...)
 
   num_groups <- length(attr(match[[1]], "capture.names"))
 

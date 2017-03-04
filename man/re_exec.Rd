@@ -5,7 +5,7 @@
 \alias{$.rematch_records}
 \title{First regular expression match and positions}
 \usage{
-re_exec(text, pattern, ...)
+re_exec(text, pattern, perl = TRUE, ...)
 
 \method{$}{rematch_records}(x, name)
 }
@@ -14,6 +14,8 @@ re_exec(text, pattern, ...)
 
 \item{pattern}{A PCRE regular expression. See \code{\link[base]{regex}}
 for more about regular expressions.}
+
+\item{perl}{logical should perl compatible regular expressions be used?}
 
 \item{...}{Additional arguments to pass to
 \code{\link[base]{regexpr}}.}
@@ -72,4 +74,3 @@ pos$first$end
 Other tidy regular expression matching: \code{\link{re_exec_all}},
   \code{\link{re_match_all}}, \code{\link{re_match}}
 }
-

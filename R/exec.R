@@ -27,6 +27,7 @@
 #' @inheritParams re_match
 #' @param x Object returned by \code{re_exec}.
 #' @param name \code{match}, \code{start} or \code{end}.
+#' @param perl logical should perl compatible regular expressions be used?
 #' @return A data frame with list columns. See the details below.
 #'
 #' @family tidy regular expression matching
@@ -49,12 +50,12 @@
 #' pos$first$start
 #' pos$first$end
 
-re_exec <- function(text, pattern, ...) {
+re_exec <- function(text, pattern, perl=TRUE, ...) {
 
   stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
   text <- as.character(text)
 
-  match <- regexpr(pattern, text, perl = TRUE, ...)
+  match <- regexpr(pattern, text, perl = perl, ...)
 
   start  <- as.vector(match)
   length <- attr(match, "match.length")
