@@ -18,13 +18,16 @@ NULL
 #' for the matching (sub)string. The columns of the capture groups are
 #' named if the groups themselves are named.
 #'
-#' Note that \code{re_match} always matches PCRE compatible regular
-#' epxressions, i.e. \code{perl = TRUE} is set for
-#' \code{\link[base]{regexpr}}.
+#' @note \code{re_match} uses PCRE compatible regular expressions by default
+#' (i.e. \code{perl = TRUE} in \code{\link[base]{regexpr}}).  You can switch
+#' this off but if you do so capture groups will no longer be reported as they
+#' are only supported by PCRE.
 #'
 #' @param text Character vector.
 #' @param pattern A PCRE regular expression. See \code{\link[base]{regex}}
 #'   for more about regular expressions.
+#' @param perl logical should perl compatible regular expressions be used?
+#'   Defaults to TRUE, setting to FALSE will disable capture groups.
 #' @param ... Additional arguments to pass to
 #'   \code{\link[base]{regexpr}}.
 #' @return A data frame of character vectors: one column per capture
@@ -44,12 +47,12 @@ NULL
 #' isodaten <- "(?<year>[0-9]{4})-(?<month>[0-1][0-9])-(?<day>[0-3][0-9])"
 #' re_match(text = dates, pattern = isodaten)
 
-re_match <- function(text, pattern, ...) {
+re_match <- function(text, pattern, perl = TRUE, ...) {
 
   stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
   text <- as.character(text)
 
-  match <- regexpr(pattern, text, perl = TRUE, ...)
+  match <- regexpr(pattern, text, perl = perl, ...)
 
   start  <- as.vector(match)
   length <- attr(match, "match.length")
