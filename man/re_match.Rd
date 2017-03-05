@@ -4,13 +4,16 @@
 \alias{re_match}
 \title{Match a regular expression to a character vector, return a data frame}
 \usage{
-re_match(text, pattern, ...)
+re_match(text, pattern, perl = TRUE, ...)
 }
 \arguments{
 \item{text}{Character vector.}
 
 \item{pattern}{A PCRE regular expression. See \code{\link[base]{regex}}
 for more about regular expressions.}
+
+\item{perl}{logical should perl compatible regular expressions be used?
+Defaults to TRUE, setting to FALSE will disable capture groups.}
 
 \item{...}{Additional arguments to pass to
 \code{\link[base]{regexpr}}.}
@@ -28,10 +31,11 @@ column for each capture group, and one final columns called \code{.match}
 for the matching (sub)string. The columns of the capture groups are
 named if the groups themselves are named.
 }
-\details{
-Note that \code{re_match} always matches PCRE compatible regular
-epxressions, i.e. \code{perl = TRUE} is set for
-\code{\link[base]{regexpr}}.
+\note{
+\code{re_match} uses PCRE compatible regular expressions by default
+(i.e. \code{perl = TRUE} in \code{\link[base]{regexpr}}).  You can switch
+this off but if you do so capture groups will no longer be reported as they
+are only supported by PCRE.
 }
 \examples{
 dates <- c("2016-04-20", "1977-08-08", "not a date", "2016",

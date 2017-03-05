@@ -12,6 +12,9 @@ re_match_all(text, pattern, perl = TRUE, ...)
 \item{pattern}{A PCRE regular expression. See \code{\link[base]{regex}}
 for more about regular expressions.}
 
+\item{perl}{logical should perl compatible regular expressions be used?
+Defaults to TRUE, setting to FALSE will disable capture groups.}
+
 \item{...}{Additional arguments to pass to
 \code{\link[base]{gregexpr}} (or \code{\link[base]{regexpr}} if
 \code{text} is of length zero).}

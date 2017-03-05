@@ -5,7 +5,7 @@
 \alias{$.rematch_allrecords}
 \title{All regular expression matches and positions}
 \usage{
-re_exec_all(text, pattern, ...)
+re_exec_all(text, pattern, perl = TRUE, ...)
 
 \method{$}{rematch_allrecords}(x, name)
 }
@@ -14,6 +14,9 @@ re_exec_all(text, pattern, ...)
 
 \item{pattern}{A PCRE regular expression. See \code{\link[base]{regex}}
 for more about regular expressions.}
+
+\item{perl}{logical should perl compatible regular expressions be used?
+Defaults to TRUE, setting to FALSE will disable capture groups.}
 
 \item{...}{Additional arguments to pass to
 \code{\link[base]{gregexpr}} (or \code{\link[base]{regexpr}} if
