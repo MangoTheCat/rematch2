@@ -1,3 +1,7 @@
+# 2.0.0.9000
+
+* Add `perl` argument to `re_match` and `re_match_all` for compatibility with
+  functions that may pass that argument as part of `...`
 
 # 2.0.0
 
