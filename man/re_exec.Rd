@@ -15,7 +15,8 @@ re_exec(text, pattern, perl = TRUE, ...)
 \item{pattern}{A PCRE regular expression. See \code{\link[base]{regex}}
 for more about regular expressions.}
 
-\item{perl}{logical should perl compatible regular expressions be used?}
+\item{perl}{logical should perl compatible regular expressions be used?
+Defaults to TRUE, setting to FALSE will disable capture groups.}
 
 \item{...}{Additional arguments to pass to
 \code{\link[base]{regexpr}}.}
@@ -29,15 +30,16 @@ A data frame with list columns. See the details below.
 }
 \description{
 Match a regular expression to a string, and return the first match,
-match positions, and also capture groups, if any.
+match positions, and also capture groups, if any and \code{perl==TRUE}.
 }
 \details{
 The results are returned in a data frame with list columns. The strings
 of the character vector correspond to the rows of the data frame.
-The columns correspond to capture groups and the first matching
-(sub)string. The columns of named capture groups are named accordingly,
-the column called \code{.text} contains the input text, and the
-column of the full match is last, and it is named \code{.match}.
+The columns correspond to capture groups (assuming PCRE matches are enabled
+with \code{perl = TRUE}) and the first matching (sub)string. The columns of
+named capture groups are named accordingly, the column called \code{.text}
+contains the input text, and the column of the full match is last, and it is
+named \code{.match}.
 
 Each column of the result is a list, containing match records.
 A match record is a named list, with entries \code{match}, \code{start}
@@ -48,8 +50,9 @@ Non-matching strings contain NAs in their corresponding rows, for the
 matches and the positions as well.
 
 To make it easier to extract matching substrings or positions, a
-special \code{$} operator is defined on match columns. (Both the
-\code{.match} column and the columns corresponsing to the match groups.)
+special \code{$} operator is defined on match columns (both the
+\code{.match} column and the columns corresponding to the match groups).
+
 See example below.
 }
 \examples{

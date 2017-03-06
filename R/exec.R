@@ -1,34 +1,42 @@
 
-#' First regular expression match and positions
+#' Regular Expression Matches and Match Positions
 #'
-#' Match a regular expression to a string, and return the first match,
-#' match positions, and also capture groups, if any.
+#' Match a regular expression to a string, and return matches, match positions,
+#' and capture groups.
 #'
-#' The results are returned in a data frame with list columns. The strings
-#' of the character vector correspond to the rows of the data frame.
-#' The columns correspond to capture groups and the first matching
-#' (sub)string. The columns of named capture groups are named accordingly,
-#' the column called \code{.text} contains the input text, and the
-#' column of the full match is last, and it is named \code{.match}.
+#' \code{re_exec} returns the data from the first match, while
+#' \code{re_exec_all} returns the data from all matches. The functions use
+#' \code{\link[base]{regexpr}} and \code{\link[base]{gregexpr}} respectively to
+#' extract matching substring(s) for a regular expression.
 #'
-#' Each column of the result is a list, containing match records.
-#' A match record is a named list, with entries \code{match}, \code{start}
-#' and \code{end}; the matching (sub) string, the start and end positions
-#' (using one based indexing).
+#' The return value is a tidy data frame where each row corresponds to an
+#' element of the input character vector \code{text}.  The values from
+#' \code{text} appear for reference in the \code{.text} character column.  All
+#' other columns are list columns containing the match data.  The \code{.match}
+#' column contains the match information for full regular expression matches
+#' while other columns correspond to capture groups if there are any and PCRE
+#' matches are enabled with \code{perl = TRUE} (this is on by default).  If
+#' capture groups are named the corresponding columns will bear those names.
 #'
-#' Non-matching strings contain NAs in their corresponding rows, for the
-#' matches and the positions as well.
+#' Each match data list column contains match records, one for each element in
+#' \code{text}.  A match record is a named list, with entries \code{match},
+#' \code{start} and \code{end}; the matching (sub) string, the start and end
+#' positions (using one based indexing).  For \code{re_exec} these entries will
+#' be one length vectors set to NA if there is no match.  For \code{re_exec_all}
+#' these entries will be as long as there are matches, with length zero if there
+#' are no matches.
 #'
 #' To make it easier to extract matching substrings or positions, a
-#' special \code{$} operator is defined on match columns. (Both the
-#' \code{.match} column and the columns corresponsing to the match groups.)
+#' special \code{$} operator is defined on match columns, both for the
+#' \code{.match} column and the columns corresponding to the capture groups.
+#'
 #' See example below.
 #'
-#' @inheritParams re_match
-#' @param x Object returned by \code{re_exec}.
+#' @inheritParams re_match_all
+#' @see also \code{\link{re_match}}, \code{\link{re_match_all}}
+#' @param x Object returned by \code{re_exec} or \code{re_exec_all}.
 #' @param name \code{match}, \code{start} or \code{end}.
-#' @param perl logical should perl compatible regular expressions be used?
-#' @return A data frame with list columns. See the details below.
+#' @return A data frame with list columns, see details below.
 #'
 #' @family tidy regular expression matching
 #' @export
@@ -41,14 +49,21 @@
 #'   "  Ben Franklin and Jefferson Davis",
 #'   "\tMillard Fillmore"
 #' )
+#' # Match first occurrence
 #' pos <- re_exec(notables, name_rex)
 #' pos
 #'
+#' # All occurrences
+#' allpos <- re_exec_all(notables, name_rex)
+#' allpos
+#'
 #' # Custom $ to extract matches and positions
-#' # for groups or the whole match
 #' pos$first$match
 #' pos$first$start
 #' pos$first$end
+#' allpos$first$match
+#' allpos$first$start
+#' allpos$first$end
 
 re_exec <- function(text, pattern, perl=TRUE, ...) {
 
