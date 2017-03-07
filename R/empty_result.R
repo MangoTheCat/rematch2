@@ -1,6 +1,6 @@
 
-empty_result <- function(text, pattern, ...) {
-  match <- regexpr(pattern, text, perl = TRUE, ...)
+empty_result <- function(text, pattern, perl=TRUE, ...) {
+  match <- regexpr(pattern, text, perl = perl, ...)
   num_groups <- length(attr(match, "capture.names"))
   structure(
     c(

@@ -4,13 +4,16 @@
 \alias{re_match_all}
 \title{Extract all matches of a PCRE regular expression, as a data frame}
 \usage{
-re_match_all(text, pattern, ...)
+re_match_all(text, pattern, perl = TRUE, ...)
 }
 \arguments{
 \item{text}{Character vector.}
 
 \item{pattern}{A PCRE regular expression. See \code{\link[base]{regex}}
 for more about regular expressions.}
+
+\item{perl}{logical should perl compatible regular expressions be used?
+Defaults to TRUE, setting to FALSE will disable capture groups.}
 
 \item{...}{Additional arguments to pass to
 \code{\link[base]{gregexpr}} (or \code{\link[base]{regexpr}} if
@@ -52,4 +55,3 @@ re_match_all(notables, name_rex)
 Other tidy regular expression matching: \code{\link{re_exec_all}},
   \code{\link{re_exec}}, \code{\link{re_match}}
 }
-

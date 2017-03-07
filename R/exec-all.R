@@ -52,20 +52,20 @@
 #' allpos$first$start
 #' allpos$first$end
 
-re_exec_all <- function(text, pattern, ...) {
+re_exec_all <- function(text, pattern, perl = TRUE, ...) {
 
   text <- as.character(text)
   stopifnot(is.character(pattern), length(pattern) == 1, !is.na(pattern))
 
   if (length(text) == 0) {
-    res <- empty_result(text, pattern, ...)
+    res <- empty_result(text, pattern, perl = perl, ...)
     for (i in seq_along(res)) {
       if (is.list(res[[i]])) class(res[[i]]) <- "rematch_allrecords"
     }
     return(res)
   }
 
-  match <- gregexpr(pattern, text, perl = TRUE, ...)
+  match <- gregexpr(pattern, text, perl = perl, ...)
 
   rec_names <- c("match", "start", "end")
   colnames <- c(attr(match[[1]], "capture.names"), ".match")
