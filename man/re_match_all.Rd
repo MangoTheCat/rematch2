@@ -2,15 +2,15 @@
 % Please edit documentation in R/all.R
 \name{re_match_all}
 \alias{re_match_all}
-\title{Extract all matches of a PCRE regular expression, as a data frame}
+\title{Extract Regular Expression Matches Into a Data Frame}
 \usage{
 re_match_all(text, pattern, perl = TRUE, ...)
 }
 \arguments{
 \item{text}{Character vector.}
 
-\item{pattern}{A PCRE regular expression. See \code{\link[base]{regex}}
-for more about regular expressions.}
+\item{pattern}{A regular expression. See \code{\link[base]{regex}} for more
+about regular expressions.}
 
 \item{perl}{logical should perl compatible regular expressions be used?
 Defaults to TRUE, setting to FALSE will disable capture groups.}
@@ -20,26 +20,33 @@ Defaults to TRUE, setting to FALSE will disable capture groups.}
 \code{text} is of length zero).}
 }
 \value{
-A data frame with all matching (sub)strings and capture groups
-  for all matches in all input strings. The rows of the data frame
-  correspond to the input strings in \code{text}. The columns correspond
-  to the capture groups, with two additional columns: \code{.text} is
-  the input text, and the last column, \code{.match}
-  corresponds to the complete matches. Since all matches are returned
-  all columns are list columns containing character vectors.
-  The columns of named groups are named as well.
+A tidy data frame (see Section \dQuote{Tidy Data}).  The list columns
+  contain character vectors with as many entries as there are matches for
+  each input element.
 }
 \description{
 This function is a thin wrapper on the \code{\link[base]{gregexpr}}
 base R function, to extract the matching (sub)strings as a data frame.
 It extracts all matches, and potentially their capture groups as well.
 }
-\details{
-Note: if the input text character vector has length zero,
-\code{\link[base]{regexpr}} is called instead of
-\code{\link[base]{gregexpr}}, because the latter cannot extract the
-number and names of the capture groups in this case.
+\note{
+If the input text character vector has length zero,
+  \code{\link[base]{regexpr}} is called instead of
+  \code{\link[base]{gregexpr}}, because the latter cannot extract the
+  number and names of the capture groups in this case.
 }
+\section{Tidy Data}{
+ The return value is a tidy data frame where each row
+corresponds to an element of the input character vector \code{text}.  The
+values from \code{text} appear for reference in the \code{.text} character
+column.  All other columns are list columns containing the match data.  The
+\code{.match} column contains the match information for full regular
+expression matches while other columns correspond to capture groups if there
+are any, and PCRE matches are enabled with \code{perl = TRUE} (this is on by
+default).  If capture groups are named the corresponding columns will bear
+those names.
+}
+
 \examples{
 name_rex <- paste0(
   "(?<first>[[:upper:]][[:lower:]]+) ",
@@ -52,6 +59,6 @@ notables <- c(
 re_match_all(notables, name_rex)
 }
 \seealso{
-Other tidy regular expression matching: \code{\link{re_exec_all}},
-  \code{\link{re_exec}}, \code{\link{re_match}}
+Other tidy regular expression matching: \code{\link{re_exec}},
+  \code{\link{re_match}}
 }

@@ -16,3 +16,10 @@ Suggests:
     covr,
     testthat
 Encoding: UTF-8
+Collate: 
+    'all.R'
+    'empty_result.R'
+    'exec.R'
+    'exec-all.R'
+    'indexing.R'
+    'package.R'
