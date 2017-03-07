@@ -11,7 +11,7 @@
   vapply(x, "[[", name, FUN.VALUE = if (name == "match") "" else 1L)
 }
 
-#' @rdname re_exec_all
+#' @rdname re_exec
 #' @export $.rematch_allrecords
 #' @export
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/package.R
 \name{re_match}
 \alias{re_match}
-\title{Extract Regular Expression Matches and Capture Groups Into a Data Frame}
+\title{Extract Regular Expression Matches Into a Data Frame}
 \usage{
 re_match(text, pattern, perl = TRUE, ...)
 }

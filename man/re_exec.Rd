@@ -4,6 +4,7 @@
 \alias{re_exec}
 \alias{re_exec_all}
 \alias{$.rematch_records}
+\alias{$.rematch_allrecords}
 \title{Extract Regular Expression Matches and Match Positions Into a Data Frame}
 \usage{
 re_exec(text, pattern, perl = TRUE, ...)
@@ -11,6 +12,8 @@ re_exec(text, pattern, perl = TRUE, ...)
 re_exec_all(text, pattern, perl = TRUE, ...)
 
 \method{$}{rematch_records}(x, name)
+
+\method{$}{rematch_allrecords}(x, name)
 }
 \arguments{
 \item{text}{Character vector.}

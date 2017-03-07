@@ -2,7 +2,7 @@
 % Please edit documentation in R/all.R
 \name{re_match_all}
 \alias{re_match_all}
-\title{Extract Regular Expression Matches Into a Data Frame}
+\title{Extract All Regular Expression Matches Into a Data Frame}
 \usage{
 re_match_all(text, pattern, perl = TRUE, ...)
 }
