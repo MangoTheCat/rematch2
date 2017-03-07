@@ -1,5 +1,5 @@
 
-#' Extract Regular Expression Matches Into a Data Frame
+#' Extract All Regular Expression Matches Into a Data Frame
 #'
 #' This function is a thin wrapper on the \code{\link[base]{gregexpr}}
 #' base R function, to extract the matching (sub)strings as a data frame.

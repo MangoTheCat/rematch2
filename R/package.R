@@ -10,7 +10,7 @@
 #' @importFrom tibble tibble
 NULL
 
-#' Extract Regular Expression Matches and Capture Groups Into a Data Frame
+#' Extract Regular Expression Matches Into a Data Frame
 #'
 #' \code{re_match} wraps \code{\link[base]{regexpr}} and returns the
 #' match results in a convenient data frame. The data frame has one
