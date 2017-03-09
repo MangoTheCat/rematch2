@@ -1,38 +1,19 @@
-
-#' All regular expression matches and positions
+#' Extract Data From All Regular Expression Matches Into a Data Frame
 #'
-#' Match a regular expression to a string, and return all matches and
-#' match positions, plus capture groups as well, if any.
+#' @inherit re_exec
 #'
-#' This function is the counterpart of \code{\link{re_exec}}, but it
-#' extracts multiple matching substrings.
+#' @description
 #'
-#' The function uses \code{\link[base]{gregexpr}} to extract all matching
-#' substrings for a regular expression, but it returns the results in a
-#' tidy data frame. The strings of the character vector correspond
-#' to the rows of the data frame. The columns correspond to capture groups
-#' and the first matching (sub)string. The columns of named capture groups
-#' are named accordingly, and there are two additional columns.
-#' \code{.text} contains the input text, and \code{.match} the full match.
+#' Match a regular expression to a string, and return matches, match positions,
+#' and capture groups.  This function is like its
+#' \code{\link[=re_match_all]{match}} counterpart, except it returns
+#' match/capture group start and end positions in addition to the matched
+#' values.
 #'
-#' Each column of the result is a list, containing lists of match records.
-#' A match record is a named list, with entries \code{match}, \code{start}
-#' and \code{end}; the matching (sub) string, the start and end positions
-#' (using one based indexing).
-#'
-#' If a string has no match, then an empty list is included in the list
-#' column for it.
-#'
-#' To make it easier to extract matching substrings or positions, a
-#' special \code{$} operator is defined on match columns. (Both the
-#' \code{.match} column and the columns corresponsing to the match groups.)
-#' See example below.
-#'
-#' @inheritParams re_match_all
-#' @param x Object returned by \code{re_exec_all}.
-#' @param name \code{match}, \code{start} or \code{end}.
-#' @return A data frame with list columns, see details below.
-#'
+#' @seealso \code{\link[base]{gregexpr}}, which this function wraps
+#' @return A tidy data frame (see Section \dQuote{Tidy Data}).  The entries
+#'   within the match records within the list columns will be one vectors
+#'   as long as there are matches for the corresponding text element.
 #' @family tidy regular expression matching
 #' @export
 #' @examples
@@ -44,14 +25,14 @@
 #'   "  Ben Franklin and Jefferson Davis",
 #'   "\tMillard Fillmore"
 #' )
-#' allpos <- re_exec(notables, name_rex)
+#' # All occurrences
+#' allpos <- re_exec_all(notables, name_rex)
 #' allpos
 #'
 #' # Custom $ to extract matches and positions
 #' allpos$first$match
 #' allpos$first$start
 #' allpos$first$end
-
 re_exec_all <- function(text, pattern, perl = TRUE, ...) {
 
   text <- as.character(text)

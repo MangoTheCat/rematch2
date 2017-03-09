@@ -10,13 +10,13 @@
 #' @importFrom tibble tibble
 NULL
 
-#' Match a regular expression to a character vector, return a data frame
+#' Extract Regular Expression Matches Into a Data Frame
 #'
 #' \code{re_match} wraps \code{\link[base]{regexpr}} and returns the
 #' match results in a convenient data frame. The data frame has one
-#' column for each capture group, and one final columns called \code{.match}
-#' for the matching (sub)string. The columns of the capture groups are
-#' named if the groups themselves are named.
+#' column for each capture group if \code{perl=TRUE}, and one final columns
+#' called \code{.match} for the matching (sub)string. The columns of the capture
+#' groups are named if the groups themselves are named.
 #'
 #' @note \code{re_match} uses PCRE compatible regular expressions by default
 #' (i.e. \code{perl = TRUE} in \code{\link[base]{regexpr}}).  You can switch
@@ -24,12 +24,11 @@ NULL
 #' are only supported by PCRE.
 #'
 #' @param text Character vector.
-#' @param pattern A PCRE regular expression. See \code{\link[base]{regex}}
-#'   for more about regular expressions.
+#' @param pattern A regular expression. See \code{\link[base]{regex}} for more
+#'   about regular expressions.
 #' @param perl logical should perl compatible regular expressions be used?
 #'   Defaults to TRUE, setting to FALSE will disable capture groups.
-#' @param ... Additional arguments to pass to
-#'   \code{\link[base]{regexpr}}.
+#' @param ... Additional arguments to pass to \code{\link[base]{regexpr}}.
 #' @return A data frame of character vectors: one column per capture
 #'   group, named if the group was named, and additional columns for
 #'   the input text and the first matching (sub)string. Each row
