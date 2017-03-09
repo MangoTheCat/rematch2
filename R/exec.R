@@ -1,17 +1,15 @@
-#' Extract Regular Expression Matches and Match Positions Into a Data Frame
+#' Extract Data From First Regular Expression Match Into a Data Frame
+#'
+#' @description
 #'
 #' Match a regular expression to a string, and return matches, match positions,
-#' and capture groups.  These functions are like their
-#' \code{\link[=re_match]{*_match}} counterparts, except they return
-#' match/capture group start and end positions in addition to the matched
-#' values.
+#' and capture groups.  This function is like its
+#' \code{\link[=re_match]{match}} counterpart, except it returns match/capture
+#' group start and end positions in addition to the matched values.
 #'
-#' \code{re_exec} returns the data from the first match, while
-#' \code{re_exec_all} returns the data from all matches. The functions use
-#' \code{\link[base]{regexpr}} and \code{\link[base]{gregexpr}} respectively to
-#' extract matching substring(s) for a regular expression.
+#' @section Tidy Data:
 #'
-#' @section Tidy Data: The return value is a tidy data frame where each row
+#' The return value is a tidy data frame where each row
 #' corresponds to an element of the input character vector \code{text}.  The
 #' values from \code{text} appear for reference in the \code{.text} character
 #' column.  All other columns are list columns containing the match data.  The
@@ -21,23 +19,24 @@
 #' default).  If capture groups are named the corresponding columns will bear
 #' those names.
 #'
-#' @section Extracting Match Data: To make it easier to extract matching
-#' substrings or positions, a special \code{$} operator is defined on match
-#' columns, both for the \code{.match} column and the columns corresponding to
-#' the capture groups.  See examples below.
+#' Each match data column list contains match records, one for each element in
+#' \code{text}.  A match record is a named list, with entries \code{match},
+#' \code{start} and \code{end} that are respectively the matching (sub) string,
+#' the start, and the end positions (using one based indexing).
+#'
+#' @section Extracting Match Data:
+#'
+#' To make it easier to extract matching substrings or positions, a special
+#' \code{$} operator is defined on match columns, both for the \code{.match}
+#' column and the columns corresponding to the capture groups.  See examples
+#' below.
 #'
 #' @inheritParams re_match_all
+#' @seealso \code{\link[base]{regexpr}}, which this function wraps
 #' @param x Object returned by \code{re_exec} or \code{re_exec_all}.
 #' @param name \code{match}, \code{start} or \code{end}.
-#' @return A tidy data frame (see Section \dQuote{Tidy Data}).  Each match data
-#'   column list contains match records, one for each element in \code{text}.  A
-#'   match record is a named list, with entries \code{match}, \code{start} and
-#'   \code{end} that are respectively the matching (sub) string, the start, and
-#'   the end positions (using one based indexing).  For \code{re_exec} these
-#'   entries will be one length vectors set to NA if there is no match.  For
-#'   \code{re_exec_all} these will be vectors as long as the number of
-#'   matches within each input vector element.
-#'
+#' @return A tidy data frame (see Section \dQuote{Tidy Data}).  Match record
+#'   entries are one length vectors that are set to NA if there is no match.
 #' @family tidy regular expression matching
 #' @export
 #' @examples
@@ -53,17 +52,10 @@
 #' pos <- re_exec(notables, name_rex)
 #' pos
 #'
-#' # All occurrences
-#' allpos <- re_exec_all(notables, name_rex)
-#' allpos
-#'
 #' # Custom $ to extract matches and positions
 #' pos$first$match
 #' pos$first$start
 #' pos$first$end
-#' allpos$first$match
-#' allpos$first$start
-#' allpos$first$end
 
 re_exec <- function(text, pattern, perl=TRUE, ...) {
 

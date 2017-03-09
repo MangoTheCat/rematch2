@@ -1,10 +1,38 @@
-#' @include exec.R
-
-NULL
-
+#' Extract Data From All Regular Expression Matches Into a Data Frame
+#'
+#' @inherit re_exec
+#'
+#' @description
+#'
+#' Match a regular expression to a string, and return matches, match positions,
+#' and capture groups.  This function is like its
+#' \code{\link[=re_match_all]{match}} counterpart, except it returns
+#' match/capture group start and end positions in addition to the matched
+#' values.
+#'
+#' @seealso \code{\link[base]{gregexpr}}, which this function wraps
+#' @return A tidy data frame (see Section \dQuote{Tidy Data}).  The entries
+#'   within the match records within the list columns will be one vectors
+#'   as long as there are matches for the corresponding text element.
+#' @family tidy regular expression matching
 #' @export
-#' @rdname re_exec
-
+#' @examples
+#' name_rex <- paste0(
+#'   "(?<first>[[:upper:]][[:lower:]]+) ",
+#'   "(?<last>[[:upper:]][[:lower:]]+)"
+#' )
+#' notables <- c(
+#'   "  Ben Franklin and Jefferson Davis",
+#'   "\tMillard Fillmore"
+#' )
+#' # All occurrences
+#' allpos <- re_exec_all(notables, name_rex)
+#' allpos
+#'
+#' # Custom $ to extract matches and positions
+#' allpos$first$match
+#' allpos$first$start
+#' allpos$first$end
 re_exec_all <- function(text, pattern, perl = TRUE, ...) {
 
   text <- as.character(text)
