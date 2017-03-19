@@ -18,6 +18,7 @@ Suggests:
 Encoding: UTF-8
 Collate: 
     'all.R'
+    'bind_re_match.R'
     'empty_result.R'
     'exec.R'
     'exec-all.R'

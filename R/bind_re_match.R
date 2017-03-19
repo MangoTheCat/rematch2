@@ -28,6 +28,7 @@ bind_re_match <- function(df, from, ..., keep_match = FALSE) {
 }
 
 #' @describeIn bind_re_match Standard-evaluation version that takes a quoted column name.
+#' @export
 bind_re_match_ <- function(df, from, ..., keep_match = FALSE) {
   res <- re_match(text = df[[from]], ...)
 
