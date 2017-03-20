@@ -35,10 +35,10 @@ bind_re_match_ <- function(df, from, ..., keep_match = FALSE) {
 
   res <- re_match(text = df[[from]], ...)
 
-  res <- res[,-which(colnames(res) == ".text")]
+  res <- res[, !names(res) == ".text"]
 
   if (!keep_match) {
-    res <- res[,-which(colnames(res) == ".match")]
+    res <- res[, !names(res) == ".match"]
   }
 
   tibble::repair_names(cbind(df, res))
