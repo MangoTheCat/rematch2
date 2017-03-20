@@ -30,6 +30,9 @@ bind_re_match <- function(df, from, ..., keep_match = FALSE) {
 #' @describeIn bind_re_match Standard-evaluation version that takes a quoted column name.
 #' @export
 bind_re_match_ <- function(df, from, ..., keep_match = FALSE) {
+  if (!tibble::has_name(df, from))
+    stop(from, " is not present in the data frame.")
+
   res <- re_match(text = df[[from]], ...)
 
   res <- res[,-which(colnames(res) == ".text")]
