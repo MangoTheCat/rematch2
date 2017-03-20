@@ -12,5 +12,5 @@ test_that("normal cases", {
   expect_equal(c(names(match_cars), "make", "model"), names(match_cars_nse))
   expect_equal(c(names(match_cars), "make", "model"), names(match_cars_se))
   expect_equal(c(names(match_cars), "make", "model", ".match"), names(match_cars_nse_with_match))
-  expect_equal(c(names(second_match_cars), "make", "model", ".match", "number", ".match1"), names(second_match_cars))
+  expect_equal(c(names(match_cars_nse_with_match), "number", ".match1"), names(second_match_cars))
 })
