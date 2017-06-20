@@ -12,11 +12,11 @@ knitr::opts_chunk$set(
 
 > Match Regular Expressions with a Nicer 'API'
 
-[![Linux Build Status](https://travis-ci.org/MangoTheCat/rematch2.svg?branch=master)](https://travis-ci.org/MangoTheCat/rematch2)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/MangoTheCat/rematch2?svg=true)](https://ci.appveyor.com/project/gaborcsardi/rematch2)
+[![Linux Build Status](https://travis-ci.org/r-lib/rematch2.svg?branch=master)](https://travis-ci.org/r-lib/rematch2)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/rematch2?svg=true)](https://ci.appveyor.com/project/gaborcsardi/rematch2)
 [![](http://www.r-pkg.org/badges/version/rematch2)](http://www.r-pkg.org/pkg/rematch2)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/rematch2)](http://www.r-pkg.org/pkg/rematch2)
-[![Coverage Status](https://img.shields.io/codecov/c/github/MangoTheCat/rematch2/master.svg)](https://codecov.io/github/MangoTheCat/rematch2?branch=master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/rematch2/master.svg)](https://codecov.io/github/r-lib/rematch2?branch=master)
 
 A small wrapper on regular expression matching functions `regexpr`
 and `gregexpr` to return the results in tidy data frames.
@@ -34,7 +34,7 @@ and `gregexpr` to return the results in tidy data frames.
 ## Installation
 
 ```{r eval = FALSE}
-source("https://install-github.me/MangoTheCat/rematch2")
+source("https://install-github.me/r-lib/rematch2")
 ```
 
 ## Rematch vs rematch2
@@ -76,7 +76,7 @@ github_repos <- c(
 	"jeroenooms/curl@v0.9.3",
     "jimhester/covr#47",
 	"hadley/dplyr@*release",
-    "mangothecat/remotes@550a3c7d3f9e1493a2ba",
+    "r-lib/remotes@550a3c7d3f9e1493a2ba",
     "/$&@R64&3"
 )
 owner_rx   <- "(?:(?<owner>[^/]+)/)?"
