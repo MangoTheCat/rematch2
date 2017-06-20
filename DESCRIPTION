@@ -1,13 +1,13 @@
 Package: rematch2
 Title: Tidy Output from Regular Expression Matching
-Version: 2.0.0.9000
+Version: 2.0.1
 Author: Gábor Csárdi
-Maintainer: Gábor Csárdi <gcsardi@mango-solutions.com>
+Maintainer: Gábor Csárdi <csardi.gabor@gmail.com>
 Description: Wrappers on 'regexpr' and 'gregexpr' to return the match
     results in tidy data frames.
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/MangoTheCat/rematch2
+URL: https://github.com/MangoTheCat/rematch2#readme
 BugReports: https://github.com/MangoTheCat/rematch2/issues
 RoxygenNote: 6.0.1
 Imports:
