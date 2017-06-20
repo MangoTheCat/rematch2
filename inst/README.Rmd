@@ -158,4 +158,4 @@ allpos$first$end
 
 ## License
 
-MIT © Mango Solutions
+MIT © Mango Solutions, Gábor Csárdi

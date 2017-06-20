@@ -60,7 +60,7 @@ re_match(text = dates, pattern = isodate)
 ```
 
 ```
-#> # A tibble: 7 × 5
+#> # A tibble: 7 x 5
 #>      ``    ``    ``            .text     .match
 #>   <chr> <chr> <chr>            <chr>      <chr>
 #> 1  2016    04    20       2016-04-20 2016-04-20
@@ -80,7 +80,7 @@ re_match(text = dates, pattern = isodaten)
 ```
 
 ```
-#> # A tibble: 7 × 5
+#> # A tibble: 7 x 5
 #>    year month   day            .text     .match
 #>   <chr> <chr> <chr>            <chr>      <chr>
 #> 1  2016    04    20       2016-04-20 2016-04-20
@@ -119,7 +119,7 @@ re_match(text = github_repos, pattern = github_rx)
 ```
 
 ```
-#> # A tibble: 6 × 9
+#> # A tibble: 6 x 9
 #>         owner    repo subdir                  ref  pull  release  catchall
 #>         <chr>   <chr>  <chr>                <chr> <chr>    <chr>     <chr>
 #> 1    metacran  crandb                                                     
@@ -150,11 +150,11 @@ not
 ```
 
 ```
-#> # A tibble: 2 × 4
+#> # A tibble: 2 x 4
 #>       first      last                              .text    .match
 #>      <list>    <list>                              <chr>    <list>
 #> 1 <chr [2]> <chr [2]>   Ben Franklin and Jefferson Davis <chr [2]>
-#> 2 <chr [1]> <chr [1]>                 \tMillard Fillmore <chr [1]>
+#> 2 <chr [1]> <chr [1]>               "\tMillard Fillmore" <chr [1]>
 ```
 
 
@@ -209,11 +209,11 @@ pos
 ```
 
 ```
-#> # A tibble: 2 × 4
+#> # A tibble: 2 x 4
 #>        first       last                              .text     .match
 #> *     <list>     <list>                              <chr>     <list>
 #> 1 <list [3]> <list [3]>   Ben Franklin and Jefferson Davis <list [3]>
-#> 2 <list [3]> <list [3]>                 \tMillard Fillmore <list [3]>
+#> 2 <list [3]> <list [3]>               "\tMillard Fillmore" <list [3]>
 ```
 
 Unfortunately R does not allow hierarchical data frames (i.e. a column of a
@@ -257,11 +257,11 @@ allpos
 ```
 
 ```
-#> # A tibble: 2 × 4
+#> # A tibble: 2 x 4
 #>        first       last                              .text     .match
 #>       <list>     <list>                              <chr>     <list>
 #> 1 <list [3]> <list [3]>   Ben Franklin and Jefferson Davis <list [3]>
-#> 2 <list [3]> <list [3]>                 \tMillard Fillmore <list [3]>
+#> 2 <list [3]> <list [3]>               "\tMillard Fillmore" <list [3]>
 ```
 
 
@@ -303,4 +303,4 @@ allpos$first$end
 
 ## License
 
-MIT © Mango Solutions
+MIT © Mango Solutions, Gábor Csárdi
