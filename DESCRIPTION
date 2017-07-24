@@ -1,14 +1,15 @@
 Package: rematch2
 Title: Tidy Output from Regular Expression Matching
-Version: 2.0.0.9000
-Author: Gábor Csárdi
-Maintainer: Gábor Csárdi <gcsardi@mango-solutions.com>
+Version: 2.0.1
+Authors@R: c(
+    person("Gábor", "Csárdi", email = "csardi.gabor@gmail.com", role = c("aut", "cre")),
+    person("Matthew", "Lincoln", email = "matthew.d.lincoln@gmail.com", role = c("ctb")))
 Description: Wrappers on 'regexpr' and 'gregexpr' to return the match
     results in tidy data frames.
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/MangoTheCat/rematch2
-BugReports: https://github.com/MangoTheCat/rematch2/issues
+URL: https://github.com/r-lib/rematch2#readme
+BugReports: https://github.com/r-lib/rematch2/issues
 RoxygenNote: 6.0.1
 Imports:
     tibble
@@ -16,10 +17,3 @@ Suggests:
     covr,
     testthat
 Encoding: UTF-8
-Collate: 
-    'all.R'
-    'empty_result.R'
-    'exec.R'
-    'exec-all.R'
-    'indexing.R'
-    'package.R'
