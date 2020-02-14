@@ -72,10 +72,10 @@ re_match(text = dates, pattern = isodaten)
 A slightly more complex example:
 ```{r}
 github_repos <- c(
-	"metacran/crandb",
-	"jeroenooms/curl@v0.9.3",
+    "metacran/crandb",
+    "jeroenooms/curl@v0.9.3",
     "jimhester/covr#47",
-	"hadley/dplyr@*release",
+    "hadley/dplyr@*release",
     "mangothecat/remotes@550a3c7d3f9e1493a2ba",
     "/$&@R64&3"
 )
@@ -88,7 +88,7 @@ release_rx <- "(?:@(?<release>[*]release))"
 
 subtype_rx <- sprintf("(?:%s|%s|%s)?", ref_rx, pull_rx, release_rx)
 github_rx  <- sprintf(
-	"^(?:%s%s%s%s|(?<catchall>.*))$",
+    "^(?:%s%s%s%s|(?<catchall>.*))$",
     owner_rx, repo_rx, subdir_rx, subtype_rx
 )
 re_match(text = github_repos, pattern = github_rx)
